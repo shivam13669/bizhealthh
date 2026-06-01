@@ -1,17 +1,6 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import logoImg from "@/assets/logo.png";
-
-function Logo() {
-  return (
-    <div className="flex items-center">
-      <img
-        src={logoImg}
-        alt="360 BizHealth"
-        className="h-10 w-auto object-contain"
-      />
-    </div>
-  );
-}
 
 
 
@@ -100,17 +89,7 @@ export default function Contact({ onNavigate }: { onNavigate: (page: "/" | "/con
         </div>
       </main>
 
-      <footer className="border-t border-border bg-surface py-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-          <Logo />
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} 360 Biz Health. All rights reserved.</p>
-          <div className="flex gap-5 text-sm text-muted-foreground">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact</a>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }

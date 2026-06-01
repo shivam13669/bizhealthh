@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import logoImg from "@/assets/logo.png";
 import hrTechnology from "@/assets/hr-technology.jpg";
 import statutoryCompliance from "@/assets/statutory-compliance.jpg";
@@ -43,18 +44,6 @@ const img = {
   brand5: `${FR}/brU1uaEpUTR5y39kjuhXxE5rcn4.png`,
   brand6: `${FR}/mYPlcpoTxOEWAuM8L6AUOpjqjpE.png`,
 };
-
-function Logo() {
-  return (
-    <div className="flex items-center">
-      <img
-        src={logoImg}
-        alt="360 BizHealth"
-        className="h-10 w-auto object-contain"
-      />
-    </div>
-  );
-}
 
 function FloatingLogo({ src, className, rot = 0 }: { src: string; className: string; rot?: number }) {
   return (
@@ -470,22 +459,6 @@ function Newsletter() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-surface py-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-        <Logo />
-        <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} 360 Biz Health. All rights reserved.</p>
-        <div className="flex gap-5 text-sm text-muted-foreground">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
   return (
     <div className="min-h-screen">
@@ -502,7 +475,7 @@ export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/conta
       <Faq />
       <Blogs />
       <Newsletter />
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </div>
   );
 }
