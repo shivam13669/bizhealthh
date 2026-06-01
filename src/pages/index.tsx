@@ -45,52 +45,71 @@ const img = {
   brand6: `${FR}/mYPlcpoTxOEWAuM8L6AUOpjqjpE.png`,
 };
 
-function FloatingLogo({ src, className, rot = 0 }: { src: string; className: string; rot?: number }) {
-  return (
-    <div className={`absolute hidden lg:block ${className}`} style={{ ["--r" as string]: `${rot}deg` } as React.CSSProperties}>
-      <div className="rounded-2xl bg-white p-3 shadow-xl shadow-black/5 ring-1 ring-black/5" style={{ transform: `rotate(${rot}deg)` }}>
-        <img src={src} alt="" className="h-14 w-14 object-contain" />
-      </div>
-    </div>
-  );
-}
-
 function Hero() {
   return (
-    <section className="relative overflow-hidden hero-gradient">
-      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 text-center">
-        <FloatingLogo src={img.veltix} className="left-[8%] top-[12%] float-a" rot={-8} />
-        <FloatingLogo src={img.nuvio} className="left-[6%] top-[55%] float-c" rot={6} />
-        <FloatingLogo src={img.klyra} className="right-[8%] top-[14%] float-b" rot={8} />
-        <FloatingLogo src={img.knot} className="right-[6%] top-[55%] float-d" rot={-6} />
+    <section className="relative overflow-hidden hero-gradient pt-32 pb-24 lg:pt-40 lg:pb-32">
+      {/* Background Decorative Gradients/Blobs */}
+      <div className="absolute top-1/4 left-0 w-72 h-72 bg-primary/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-10 right-0 w-96 h-96 bg-orange-500/5 rounded-full filter blur-[150px] pointer-events-none"></div>
 
-        <div className="mx-auto inline-flex items-center gap-3 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm">
-          <div className="flex -space-x-2">
-            <img src={img.p1} className="h-5 w-5 rounded-full border border-white object-cover" />
-            <img src={img.p2} className="h-5 w-5 rounded-full border border-white object-cover" />
-            <img src={img.p3} className="h-5 w-5 rounded-full border border-white object-cover" />
+      <div className="relative mx-auto max-w-[1180px] px-6">
+        <div className="grid gap-12 lg:grid-cols-12 items-center">
+          
+          {/* Left Column: Content */}
+          <div className="lg:col-span-6 text-left flex flex-col items-start">
+            
+            {/* Trusted Badge */}
+            <div className="inline-flex items-center gap-3 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm mb-6">
+              <div className="flex -space-x-2">
+                <img src={img.p1} className="h-5 w-5 rounded-full border border-white object-cover" />
+                <img src={img.p2} className="h-5 w-5 rounded-full border border-white object-cover" />
+                <img src={img.p3} className="h-5 w-5 rounded-full border border-white object-cover" />
+              </div>
+              <span className="text-primary font-semibold">Trusted by 1M+ users</span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-[54px] leading-[1.1] max-w-xl animate-fade-in">
+              A Smarter Way to Manage Your Business
+            </h1>
+
+            {/* Description */}
+            <p className="mt-6 text-base text-muted-foreground md:text-lg max-w-xl leading-relaxed">
+              Stop juggling multiple tools. HR, compliance, taxation, insurance and IP—all seamlessly integrated in one intelligent platform.
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
+              <a 
+                href="#pricing"
+                className="w-full sm:w-auto text-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:scale-[1.01] hover:bg-primary/95"
+              >
+                Schedule Free Consultation
+              </a>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground px-1">
+                <span>📅 30-min consultation included</span>
+              </div>
+            </div>
+
           </div>
-          <span className="text-primary">Trusted by 1M+ users</span>
-        </div>
 
-        <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-extrabold tracking-tight md:text-7xl">
-          A Smarter Way to Manage Your Business
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-          Stop juggling multiple tools. HR, compliance, taxation, insurance and IP—all seamlessly integrated in one intelligent platform.
-        </p>
-
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <a href="#" className="rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition hover:scale-[1.02]">
-            Schedule Free Consultation
-          </a>
-          <p className="text-xs text-muted-foreground">📅 30-minute consultation included</p>
-        </div>
-
-        <div className="relative mx-auto mt-16 max-w-6xl">
-          <div className="overflow-hidden rounded-2xl glow-card ring-1 ring-black/5">
-            <img src={heroDashboard} alt="360 Biz Health platform" className="w-full" />
+          {/* Right Column: Hero Mockup Image */}
+          <div className="lg:col-span-6 relative w-full flex items-center justify-center">
+            
+            {/* Soft glow behind the image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-orange-500/10 rounded-3xl filter blur-2xl opacity-75 pointer-events-none scale-95"></div>
+            
+            {/* Dashboard Mockup Card */}
+            <div className="relative overflow-hidden rounded-2xl glow-card ring-1 ring-black/5 bg-white transition-transform hover:scale-[1.01] duration-300 w-full">
+              <img 
+                src={heroDashboard} 
+                alt="360 Biz Health platform" 
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            
           </div>
+
         </div>
       </div>
     </section>

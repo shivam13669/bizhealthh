@@ -283,17 +283,6 @@ export default function Header({ onNavigate }: HeaderProps) {
         </header>
       </div>
 
-      {/* ----------------- STICKY BOTTOM BUTTON (Mobile Only CTA) ----------------- */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white/95 to-transparent z-40">
-        <a
-          href="#pricing"
-          onClick={(e) => handleLinkClick(e, "#pricing")}
-          className="flex items-center justify-center w-full py-3 text-base font-bold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-[0_8px_24px_-4px_rgba(255,92,53,0.35)]"
-        >
-          Book a Demo →
-        </a>
-      </div>
-
       {/* ----------------- FULL-SCREEN MOBILE OVERLAY MENU ----------------- */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
