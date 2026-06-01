@@ -241,7 +241,13 @@ export default function Header({ onNavigate }: HeaderProps) {
 
       {/* ----------------- MOBILE HEADER (Flat Full-Width White Bar) ----------------- */}
       <div className="fixed top-0 left-0 right-0 z-50 lg:hidden">
-        <header className="flex items-center justify-between bg-white border-b border-slate-100 h-16 px-5 shadow-sm">
+        <header
+          className={`flex items-center justify-between bg-white h-16 px-5 transition-all duration-300 ${
+            isScrolled 
+              ? "border-b border-slate-100 shadow-sm" 
+              : "border-b border-transparent shadow-none"
+          }`}
+        >
           {/* Logo */}
           <a
             href="/"
