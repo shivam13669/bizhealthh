@@ -328,7 +328,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 const isExpanded = expandedMobileSection === item.key;
 
                 return (
-                  <div key={item.key} className="border-b border-slate-50 pb-2">
+                  <div key={item.key} className="py-0.5">
                     {hasDropdown ? (
                       <div>
                         <button
