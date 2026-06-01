@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import logoImg from "@/assets/logo.png";
 
-export default function NotFound({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+export default function NotFound({ onNavigate }: { onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void }) {
   return (
     <div className="min-h-screen bg-background">
       <Header onNavigate={onNavigate} />

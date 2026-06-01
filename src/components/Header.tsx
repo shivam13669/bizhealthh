@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 
 interface HeaderProps {
-  onNavigate: (page: "/" | "/contact") => void;
+  onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void;
 }
 
 export default function Header({ onNavigate }: HeaderProps) {
@@ -48,7 +48,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     if (href.startsWith("#")) {
       e.preventDefault();
       const currentPath = window.location.pathname;
-      if (currentPath === "/contact") {
+      if (currentPath === "/contact" || currentPath === "/login" || currentPath === "/pricing") {
         onNavigate("/");
         setTimeout(() => {
           const el = document.getElementById(href.substring(1));
@@ -61,6 +61,12 @@ export default function Header({ onNavigate }: HeaderProps) {
     } else if (href === "/contact") {
       e.preventDefault();
       onNavigate("/contact");
+    } else if (href === "/pricing") {
+      e.preventDefault();
+      onNavigate("/pricing");
+    } else if (href === "/login") {
+      e.preventDefault();
+      onNavigate("/login");
     } else if (href === "/") {
       e.preventDefault();
       onNavigate("/");
@@ -98,7 +104,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     {
       title: "Pricing",
       key: "pricing",
-      href: "#pricing",
+      href: "/pricing",
     },
     {
       title: "Resources",
@@ -223,15 +229,15 @@ export default function Header({ onNavigate }: HeaderProps) {
             {/* Right Buttons */}
             <div className="flex items-center gap-5">
               <a
-                href="#pricing"
-                onClick={(e) => handleLinkClick(e, "#pricing")}
+                href="/contact"
+                onClick={(e) => handleLinkClick(e, "/contact")}
                 className="px-6 py-2.5 text-[14px] font-semibold text-white bg-primary rounded-full hover:bg-primary/95 transition-all duration-300 hover:scale-[1.01] shadow-sm shadow-primary/10"
               >
                 Book a Demo
               </a>
               <a
-                href="/contact"
-                onClick={(e) => handleLinkClick(e, "/contact")}
+                href="/login"
+                onClick={(e) => handleLinkClick(e, "/login")}
                 className="px-6 py-2.5 text-[14px] font-semibold text-white bg-primary rounded-full hover:bg-primary/95 transition-all duration-300 hover:scale-[1.01] shadow-sm shadow-primary/10"
               >
                 Login
@@ -266,8 +272,8 @@ export default function Header({ onNavigate }: HeaderProps) {
           {/* Right side: Login button + Hamburger aligned inline */}
           <div className="flex items-center gap-3">
             <a
-              href="/contact"
-              onClick={(e) => handleLinkClick(e, "/contact")}
+              href="/login"
+              onClick={(e) => handleLinkClick(e, "/login")}
               className="px-4.5 py-1.5 text-[13px] font-semibold text-white bg-primary rounded-full hover:bg-primary/95 transition-all"
             >
               Login
@@ -367,8 +373,8 @@ export default function Header({ onNavigate }: HeaderProps) {
             {/* Footer Book a Demo button inside overlay */}
             <div className="border-t border-slate-100 pt-6 mt-auto">
               <a
-                href="#pricing"
-                onClick={(e) => handleLinkClick(e, "#pricing")}
+                href="/contact"
+                onClick={(e) => handleLinkClick(e, "/contact")}
                 className="flex items-center justify-center w-full py-3.5 text-base font-bold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-md shadow-primary/20"
               >
                 Book a Demo →

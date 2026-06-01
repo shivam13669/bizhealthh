@@ -2,7 +2,7 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin, Phone } from "luc
 import logoImg from "@/assets/logo.png";
 
 interface FooterProps {
-  onNavigate: (page: "/" | "/contact") => void;
+  onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -10,7 +10,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     if (href.startsWith("#")) {
       e.preventDefault();
       const currentPath = window.location.pathname;
-      if (currentPath === "/contact") {
+      if (currentPath === "/contact" || currentPath === "/pricing" || currentPath === "/login") {
         onNavigate("/");
         setTimeout(() => {
           const el = document.getElementById(href.substring(1));
@@ -23,6 +23,12 @@ export default function Footer({ onNavigate }: FooterProps) {
     } else if (href === "/contact") {
       e.preventDefault();
       onNavigate("/contact");
+    } else if (href === "/pricing") {
+      e.preventDefault();
+      onNavigate("/pricing");
+    } else if (href === "/login") {
+      e.preventDefault();
+      onNavigate("/login");
     } else if (href === "/") {
       e.preventDefault();
       onNavigate("/");
@@ -55,6 +61,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   const companyLinks = [
     { title: "Our Story", href: "#benefits" },
     { title: "Careers", href: "#benefits", badge: "We're Hiring!" },
+    { title: "Pricing", href: "/pricing" },
     { title: "Contact Us", href: "/contact" },
     { title: "Privacy Policy", href: "#" },
     { title: "Terms of Service", href: "#" },

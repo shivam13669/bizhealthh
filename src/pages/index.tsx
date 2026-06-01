@@ -480,7 +480,7 @@ function Newsletter() {
   );
 }
 
-export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void }) {
   return (
     <div className="min-h-screen">
       <Header onNavigate={onNavigate} />

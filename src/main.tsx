@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import Index from './pages/index'
 import Contact from './pages/contact'
+import Login from './pages/login'
+import Pricing from './pages/pricing'
 import NotFound from './pages/not-found'
 import './styles.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'/' | '/contact' | '404'>('/')
+  const [currentPage, setCurrentPage] = useState<'/' | '/contact' | '/login' | '/pricing' | '404'>('/')
 
-  const handleNavigate = (page: '/' | '/contact') => {
+  const handleNavigate = (page: '/' | '/contact' | '/login' | '/pricing') => {
     setCurrentPage(page)
     window.history.pushState({}, '', page)
   }
@@ -18,6 +20,10 @@ function App() {
       const pathname = window.location.pathname
       if (pathname === '/contact') {
         setCurrentPage('/contact')
+      } else if (pathname === '/login') {
+        setCurrentPage('/login')
+      } else if (pathname === '/pricing') {
+        setCurrentPage('/pricing')
       } else if (pathname === '/') {
         setCurrentPage('/')
       } else {
@@ -31,6 +37,10 @@ function App() {
     const pathname = window.location.pathname
     if (pathname === '/contact') {
       setCurrentPage('/contact')
+    } else if (pathname === '/login') {
+      setCurrentPage('/login')
+    } else if (pathname === '/pricing') {
+      setCurrentPage('/pricing')
     } else if (pathname === '/') {
       setCurrentPage('/')
     } else {
@@ -44,6 +54,8 @@ function App() {
     <>
       {currentPage === '/' && <Index onNavigate={handleNavigate} />}
       {currentPage === '/contact' && <Contact onNavigate={handleNavigate} />}
+      {currentPage === '/login' && <Login onNavigate={handleNavigate} />}
+      {currentPage === '/pricing' && <Pricing onNavigate={handleNavigate} />}
       {currentPage === '404' && <NotFound onNavigate={handleNavigate} />}
     </>
   )

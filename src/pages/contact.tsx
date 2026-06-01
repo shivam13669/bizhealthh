@@ -22,7 +22,7 @@ const img = {
   sarah: `${FR}/eqelcmPilFO99lTneGHDJtQO7w.png`,
 };
 
-export default function Contact({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+export default function Contact({ onNavigate }: { onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void }) {
   // Form State
   const [formData, setFormData] = useState({
     firstName: "",
