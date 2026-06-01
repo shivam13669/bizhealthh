@@ -1,0 +1,523 @@
+import { useState } from "react";
+import hrTechnology from "@/assets/hr-technology.jpg";
+import statutoryCompliance from "@/assets/statutory-compliance.jpg";
+import financialTaxation from "@/assets/financial-taxation.jpg";
+import insuranceAdvisory from "@/assets/insurance-advisory.jpg";
+import heroDashboard from "@/assets/hero-dashboard.jpg";
+
+const FR = "https://framerusercontent.com/images";
+const img = {
+  dashboard: `${FR}/ZQIj3Thxxza6gmZ33yEqfh0ew.png`,
+  unified: `${FR}/UasGKBRyLZHeUJr1HL5mRgukJU.png`,
+  ai: `${FR}/eUVqpWJ3R7uJaOJnHDYhRMM4WPE.png`,
+  usage: `${FR}/HCkEwVWHcO0voDYrtskCSdReI.png`,
+  retention: `${FR}/ukxSF4evyjJNRAA1AxD2RgCC4ds.png`,
+  integrate: `${FR}/eZxPRr9DFJ1LBw2C6XgbmteUwk.png`,
+  gauge: `${FR}/MTi16xQQXh1uLFK6rlUiLRrhNc4.png`,
+  envelope: `${FR}/WVfMImGvfZB1ZvVOi4f8QpGgcQ.png`,
+  envelopeFooter: `${FR}/OXyYHX9MW2fCN7IDYfVvNCAqUX0.png`,
+  veltix: `${FR}/nJN9fw89j7L0b6R9JJh3qGL98.png`,
+  knot: `${FR}/rpot5Bf0TIFeRoXSfetpc2GULFo.png`,
+  klyra: `${FR}/GfeiYrM8yVHItoK8N01yQWI7djQ.png`,
+  nuvio: `${FR}/3xq9uOvolNwNx1mCSkE8bN0BYQ.png`,
+  p1: `${FR}/XreXVnshxtY9J8ZoG3rjAuTzW8E.png`,
+  p2: `${FR}/IvVTxoC9vqr4NcKyfF6JMWEc.png`,
+  p3: `${FR}/UrClpHTqxXZbq1FAa6sJ9BzS1uk.png`,
+  quote: `${FR}/UBNbepHJf0KbEt8th3mWIASU8.svg`,
+  stars: `${FR}/7gBs4Qym6w5w5VToXqPFZUirIg.svg`,
+  blog1: `${FR}/FtmOrBfo605IzU7NGNBgglpwFg.png`,
+  blog2: `${FR}/yWKMBE9ZW7mo4BPJxZ7N3wLJXzY.png`,
+  blog3: `${FR}/gAGNRXHMmc0UdJcc054idbIAoM.png`,
+  blog4: `${FR}/XD8IOtGZkFXgZsVfKdtEB0hi6s.png`,
+  carter: `${FR}/Ja8p9J3F9vN86Z3j6hBjs1zT9SY.png`,
+  elena: `${FR}/kVI5rNJF2u29dE47wJKBMhBHIVc.png`,
+  james: `${FR}/g9u5lc8a7bhRVYmAcLaz2V8Vd0.png`,
+  marcus: `${FR}/toL76daUzF0G3CNvrUyjLIYRBU.png`,
+  sarah: `${FR}/eqelcmPilFO99lTneGHDJtQO7w.png`,
+  brand1: `${FR}/PGKcy4WmnERCPmeXktSEHoHKnBg.png`,
+  brand2: `${FR}/qhXchWGPkz6damUzZuhTuqkwU.png`,
+  brand3: `${FR}/JVfYExM1Xs6KQpl1derzB2V1g.png`,
+  brand4: `${FR}/wFewVdp3ivv1nwC1Inkn50DQomE.png`,
+  brand5: `${FR}/brU1uaEpUTR5y39kjuhXxE5rcn4.png`,
+  brand6: `${FR}/mYPlcpoTxOEWAuM8L6AUOpjqjpE.png`,
+};
+
+function Logo() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg>
+      </div>
+      <span className="text-lg font-bold tracking-tight">360 Biz Health</span>
+    </div>
+  );
+}
+
+function Nav({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+  const items = ["Features", "Benefits", "Integrations", "Pricing", "FAQ", "Blogs"];
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        <Logo />
+        <nav className="hidden items-center gap-7 md:flex">
+          {items.map((i) => (
+            <a key={i} href={`#${i.toLowerCase()}`} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">{i}</a>
+          ))}
+          <button onClick={() => onNavigate("/contact")} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</button>
+        </nav>
+        <a href="#" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:opacity-90">Get Template</a>
+      </div>
+    </header>
+  );
+}
+
+function FloatingLogo({ src, className, rot = 0 }: { src: string; className: string; rot?: number }) {
+  return (
+    <div className={`absolute hidden lg:block ${className}`} style={{ ["--r" as string]: `${rot}deg` } as React.CSSProperties}>
+      <div className="rounded-2xl bg-white p-3 shadow-xl shadow-black/5 ring-1 ring-black/5" style={{ transform: `rotate(${rot}deg)` }}>
+        <img src={src} alt="" className="h-14 w-14 object-contain" />
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden hero-gradient">
+      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-12 text-center">
+        <FloatingLogo src={img.veltix} className="left-[8%] top-[12%] float-a" rot={-8} />
+        <FloatingLogo src={img.nuvio} className="left-[6%] top-[55%] float-c" rot={6} />
+        <FloatingLogo src={img.klyra} className="right-[8%] top-[14%] float-b" rot={8} />
+        <FloatingLogo src={img.knot} className="right-[6%] top-[55%] float-d" rot={-6} />
+
+        <div className="mx-auto inline-flex items-center gap-3 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm">
+          <div className="flex -space-x-2">
+            <img src={img.p1} className="h-5 w-5 rounded-full border border-white object-cover" />
+            <img src={img.p2} className="h-5 w-5 rounded-full border border-white object-cover" />
+            <img src={img.p3} className="h-5 w-5 rounded-full border border-white object-cover" />
+          </div>
+          <span className="text-primary">Trusted by 1M+ users</span>
+        </div>
+
+        <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-extrabold tracking-tight md:text-7xl">
+          A Smarter Way to Manage Your Business
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+          Stop juggling multiple tools. HR, compliance, taxation, insurance and IP—all seamlessly integrated in one intelligent platform.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <a href="#" className="rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/30 transition hover:scale-[1.02]">
+            Schedule Free Consultation
+          </a>
+          <p className="text-xs text-muted-foreground">📅 30-minute consultation included</p>
+        </div>
+
+        <div className="relative mx-auto mt-16 max-w-6xl">
+          <div className="overflow-hidden rounded-2xl glow-card ring-1 ring-black/5">
+            <img src={heroDashboard} alt="360 Biz Health platform" className="w-full" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrustedBy() {
+  const logos = [img.brand1, img.brand2, img.brand3, img.brand4, img.brand5, img.brand6];
+  const row = [...logos, ...logos, ...logos];
+  return (
+    <section className="border-y border-border bg-surface py-14">
+      <p className="text-center text-sm font-medium uppercase tracking-widest text-muted-foreground">Blindly trusted by</p>
+      <div className="mt-8 overflow-hidden">
+        <div className="marquee items-center">
+          {row.map((l, i) => (
+            <img key={i} src={l} alt="" className="h-8 w-auto opacity-60 grayscale" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  const feats = [
+    { img: hrTechnology, title: "HR Technology & HRMS", desc: "Complete HR solutions including payroll management, attendance tracking, and employee portal automation." },
+    { img: statutoryCompliance, title: "Statutory Compliance", desc: "PF, ESIC, PT, LWF and labour law compliance with zero penalties guaranteed." },
+    { img: financialTaxation, title: "Financial & Taxation", desc: "GST compliance, income tax planning, and strategic financial advisory to save lakhs annually." },
+    { img: insuranceAdvisory, title: "Insurance Advisory", desc: "Comprehensive group health, corporate insurance, and expert claims support for your team." },
+  ];
+  return (
+    <section id="features" className="mx-auto max-w-7xl px-6 py-24">
+      <div className="text-center">
+        <span className="text-sm font-medium text-primary">Everything You Need</span>
+        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">End-to-End Business Solutions</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">From managing your team to staying compliant with tax laws—handle every aspect of your business with confidence.</p>
+      </div>
+
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
+        {feats.map((f) => (
+          <div key={f.title} className="group overflow-hidden rounded-3xl border border-border bg-card transition hover:shadow-xl">
+            <div className="aspect-[16/10] overflow-hidden bg-surface">
+              <img src={f.img} alt={f.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            </div>
+            <div className="p-7">
+              <h3 className="text-xl font-bold">{f.title}</h3>
+              <p className="mt-2 text-muted-foreground">{f.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Benefits() {
+  const items = [
+    { t: "95% Time Savings", d: "Reduce HR processing time by 95% with automated payroll and attendance." },
+    { t: "Zero Compliance Penalties", d: "Stay compliant with all regulations—PF, ESIC, Labour Laws and beyond." },
+    { t: "Save ₹Lakhs Annually", d: "Tax optimization and cost savings through expert financial advisory." },
+    { t: "Complete Security", d: "Secure handling of sensitive employee and financial data." },
+    { t: "5+ Years Expertise", d: "Trusted by 500+ businesses with proven track record of excellence." },
+    { t: "Fast Implementation", d: "Quick setup with minimal disruption to your business operations." },
+  ];
+  const icons = ["⏱️", "✅", "💰", "🔐", "🏆", "🚀"];
+  return (
+    <section id="benefits" className="bg-surface py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-medium text-primary">Why 500+ Businesses Trust Us</span>
+          <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Real Results, Real Growth</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Save time, reduce costs, stay compliant, and scale confidently with our proven expertise.</p>
+        </div>
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {items.map((b, i) => (
+            <div key={b.t} className="rounded-2xl border border-border bg-card p-7 transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-xl">{icons[i]}</div>
+              <h3 className="mt-5 text-lg font-bold">{b.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{b.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    { n: "01", t: "Quick Implementation", d: "Our team handles the setup in 2-4 weeks. You focus on business while we integrate your systems seamlessly.", img: img.integrate },
+    { n: "02", t: "Centralized Control", d: "Manage HR, compliance, taxes, and insurance from one intelligent dashboard with real-time insights.", img: img.gauge },
+    { n: "03", t: "Expert Support", d: "Get dedicated advisory, regular audits, and proactive guidance to stay ahead of regulations and optimize costs.", img: img.envelope },
+  ];
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-24">
+      <div className="text-center">
+        <span className="text-sm font-medium text-primary">Getting Started</span>
+        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Simple, Guided Implementation</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">From day one to ongoing success—we guide every step of your journey.</p>
+      </div>
+      <div className="mt-14 grid gap-6 md:grid-cols-3">
+        {steps.map((s) => (
+          <div key={s.n} className="rounded-3xl border border-border bg-card p-2">
+            <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
+              <img src={s.img} alt={s.t} className="h-full w-full object-cover" />
+            </div>
+            <div className="p-6">
+              <div className="text-sm font-mono text-primary">{s.n}</div>
+              <h3 className="mt-2 text-xl font-bold">{s.t}</h3>
+              <p className="mt-2 text-muted-foreground">{s.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Integrations() {
+  const items = [
+    { src: img.nuvio, name: "Nuvio" },
+    { src: img.klyra, name: "Klyra" },
+    { src: img.knot, name: "Knot" },
+    { src: img.veltix, name: "Veltix" },
+  ];
+  const row = [...items, ...items, ...items, ...items];
+  return (
+    <section id="integrations" className="bg-surface py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-medium text-primary">Partners & Tools</span>
+          <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Works With Your Existing Systems</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Integrate with payroll systems, accounting software, and tools your team already uses. No disruption, just efficiency.</p>
+          <a href="#" className="mt-8 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">Explore Integrations</a>
+        </div>
+        <div className="mt-14 overflow-hidden">
+          <div className="marquee marquee-slow items-center">
+            {row.map((it, i) => (
+              <div key={i} className="flex flex-col items-center gap-3">
+                <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black/5">
+                  <img src={it.src} alt={it.name} className="h-16 w-16 object-contain" />
+                </div>
+                <span className="text-sm font-medium">{it.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const items = [
+    { q: "360 Biz Health transformed our HR operations. We reduced payroll processing time by 95% and finally have zero errors. The savings have been incredible.", n: "Rajesh Kumar", img: img.carter },
+    { q: "Their tax advisory alone saved us ₹25 lakhs annually. What impressed me most is how proactive their team is—they catch issues before they become penalties.", n: "Priya Sharma", img: img.elena },
+    { q: "Managing compliance across multiple regulations was a nightmare. Now it's automated and we sleep better knowing everything is audit-ready.", n: "Amit Patel", img: img.james },
+    { q: "The best investment our business made. All our HR, tax, and compliance needs in one place. The support team is responsive and genuinely cares about our success.", n: "Neha Singh", img: img.marcus },
+    { q: "From 80 hours of manual work per month to almost zero. That's the kind of impact 360 Biz Health delivers. Highly recommend.", n: "Vikram Kapoor", img: img.sarah },
+  ];
+  const row = [...items, ...items];
+  return (
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-medium text-primary">Success Stories</span>
+          <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Trusted by Leading Businesses</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">See how 500+ companies transformed their operations, saved costs, and reduced compliance risk.</p>
+        </div>
+      </div>
+      <div className="mt-14 overflow-hidden">
+        <div className="marquee marquee-slow items-stretch">
+          {row.map((t, i) => (
+            <div key={i} className="w-[380px] shrink-0 rounded-3xl border border-border bg-card p-7">
+              <img src={img.quote} alt="" className="h-5 w-auto opacity-70" />
+              <p className="mt-4 text-sm leading-relaxed text-foreground/80">{t.q}</p>
+              <div className="mt-6 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <img src={t.img} alt={t.n} className="h-10 w-10 rounded-full object-cover" />
+                  <span className="text-sm font-semibold">{t.n}</span>
+                </div>
+                <img src={img.stars} alt="rating" className="h-4 w-auto" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const [yearly, setYearly] = useState(false);
+  const plans = [
+    { name: "Starter", m: 4999, y: 49990, d: "Ideal for startups and small teams (up to 50 employees).", f: ["HRMS with Payroll", "Basic Compliance Filing", "GST & Income Tax", "Email & Chat Support", "Monthly Reports"], popular: false },
+    { name: "Growth", m: 9999, y: 99990, d: "For growing businesses (50-250 employees). Most popular.", f: ["Everything in Starter", "Advanced Compliance", "Insurance Advisory", "Tax Planning", "Dedicated Account Manager"], popular: true },
+    { name: "Enterprise", m: 19999, y: 199990, d: "For large organizations with complex needs.", f: ["All Growth features", "IP & Branding Services", "Priority Support", "Custom Integrations", "Strategic Advisory"], popular: false },
+  ];
+  return (
+    <section id="pricing" className="bg-surface py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-medium text-primary">Transparent Pricing</span>
+          <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Plans Built for Every Business Size</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Simple, predictable pricing with no hidden fees. ROI guaranteed through compliance certainty and cost savings.</p>
+
+          <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-card p-1">
+            <button onClick={() => setYearly(false)} className={`rounded-full px-5 py-2 text-sm font-semibold transition ${!yearly ? "bg-primary text-primary-foreground" : "text-foreground/60"}`}>Monthly</button>
+            <button onClick={() => setYearly(true)} className={`rounded-full px-5 py-2 text-sm font-semibold transition ${yearly ? "bg-primary text-primary-foreground" : "text-foreground/60"}`}>Annual (Save 20%)</button>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {plans.map((p) => (
+            <div key={p.name} className={`relative rounded-3xl border bg-card p-8 ${p.popular ? "border-primary shadow-2xl shadow-primary/20" : "border-border"}`}>
+              {p.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">Most Popular</span>}
+              <h3 className="text-base font-semibold text-muted-foreground">{p.name}</h3>
+              <div className="mt-3 flex items-baseline gap-1">
+                <span className="text-5xl font-extrabold">₹{yearly ? Math.floor(p.y / 12) : p.m}</span>
+                <span className="text-sm text-muted-foreground">/month</span>
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground">{p.d}</p>
+              <div className="my-6 h-px bg-border" />
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What's included</p>
+              <ul className="mt-4 space-y-3">
+                {p.f.map((it) => (
+                  <li key={it} className="flex items-start gap-3 text-sm">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    {it}
+                  </li>
+                ))}
+              </ul>
+              <a href="#" className={`mt-8 block rounded-full px-5 py-3 text-center text-sm font-semibold transition ${p.popular ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" : "bg-foreground text-background hover:opacity-90"}`}>Get Started</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Compare() {
+  const others = ["Manage HR, taxes, compliance separately", "Time-consuming compliance filings", "Constant penalty risks", "No strategic tax planning", "Limited regulatory updates"];
+  const ours = ["One integrated platform for everything", "Automated compliance filings", "Zero penalties guaranteed", "Proactive tax optimization", "Dedicated expert support"];
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-24">
+      <div className="text-center">
+        <span className="text-sm font-medium text-primary">Why 360 Biz Health</span>
+        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">A Smarter Way to Manage Everything</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Stop managing multiple tools. Consolidate, automate, and scale with confidence.</p>
+      </div>
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="rounded-3xl border border-border bg-card p-8">
+          <h3 className="text-xl font-bold text-muted-foreground">Traditional Approach</h3>
+          <ul className="mt-6 space-y-4">
+            {others.map((o) => (
+              <li key={o} className="flex items-center gap-3 text-foreground/70">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-muted text-muted-foreground">✕</span>
+                {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-3xl border-2 border-primary bg-card p-8 shadow-xl shadow-primary/10">
+          <h3 className="text-xl font-bold text-primary">360 Biz Health</h3>
+          <ul className="mt-6 space-y-4">
+            {ours.map((o) => (
+              <li key={o} className="flex items-center gap-3 font-medium">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-primary/15 text-primary">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+                {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  const items = [
+    { q: "How quickly can we implement your platform?", a: "Most implementations are complete in 2-4 weeks with our dedicated onboarding team. We ensure minimal disruption to your existing operations." },
+    { q: "Do you handle all compliance filings?", a: "Yes, we manage PF, ESIC, PT, LWF, GST, Income Tax and Labour Law compliance. You get expert audit support and zero-penalty guarantee." },
+    { q: "How much can we save on taxes?", a: "On average, our clients save ₹25L-₹50L annually through strategic tax planning. Your savings depend on your business structure and transactions." },
+    { q: "Is our employee data secure?", a: "Absolutely. We use bank-grade encryption, regular security audits, and comply with all data protection regulations including GDPR." },
+    { q: "Can you help with IP registration?", a: "Yes. We handle trademark registration, copyright filing, patent applications, and complete brand protection strategies." },
+  ];
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section id="faq" className="bg-surface py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="text-center">
+          <span className="text-sm font-medium text-primary">Questions?</span>
+          <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">We Have Answers</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Everything you need to know about implementing our platform and getting maximum value.</p>
+        </div>
+        <div className="mt-12 space-y-3">
+          {items.map((it, i) => (
+            <div key={i} className="overflow-hidden rounded-2xl border border-border bg-card">
+              <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 p-6 text-left">
+                <span className="font-semibold">{it.q}</span>
+                <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition ${open === i ? "rotate-45" : ""}`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12h14" strokeLinecap="round"/></svg>
+                </span>
+              </button>
+              {open === i && <div className="px-6 pb-6 text-sm text-muted-foreground">{it.a}</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Blogs() {
+  const posts = [
+    { tag: "Compliance", title: "Stay Audit-Ready: Essential Compliance Checklist for 2024", desc: "Never face a compliance penalty again. Learn the critical PF, ESIC, and Labour Law requirements every business must track.", img: img.blog1, read: "6 min read" },
+    { tag: "HR", title: "Cut Payroll Processing Time by 95%—Here's How", desc: "Real case study: How one manufacturing firm reduced payroll errors and processing time using automated HRMS solutions.", img: img.blog2, read: "5 min read" },
+    { tag: "Taxation", title: "Tax Planning Mistakes That Cost Businesses Lakhs", desc: "Common tax optimization errors and how strategic planning can save you ₹50L+ annually. Expert insights inside.", img: img.blog3, read: "7 min read" },
+    { tag: "Business", title: "Insurance Beyond Coverage—Claims Management That Actually Works", desc: "What happens after you file a claim? Discover how expert advisory turns crisis into opportunity.", img: img.blog4, read: "5 min read" },
+  ];
+  return (
+    <section id="blogs" className="mx-auto max-w-7xl px-6 py-24">
+      <div className="text-center">
+        <span className="text-sm font-medium text-primary">Knowledge Base</span>
+        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Expert Insights for Smart Business Decisions</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Learn from our team's 5+ years of experience. Compliance tips, HR automation hacks, tax strategies, and more.</p>
+      </div>
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {posts.map((p) => (
+          <a key={p.title} href="#" className="group rounded-3xl border border-border bg-card p-2 transition hover:shadow-lg">
+            <div className="aspect-[4/3] overflow-hidden rounded-2xl">
+              <img src={p.img} alt={p.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            </div>
+            <div className="p-5">
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">{p.tag}</span>
+              <h3 className="mt-2 font-bold leading-snug">{p.title}</h3>
+              <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{p.desc}</p>
+              {p.read && <p className="mt-3 text-xs text-muted-foreground">{p.read}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mt-10 text-center">
+        <a href="#" className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold">View all</a>
+      </div>
+    </section>
+  );
+}
+
+function Newsletter() {
+  return (
+    <section className="px-6 pb-24">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] p-12 text-center md:p-20" style={{backgroundColor: "#FFD4B3"}}>
+        <img src={img.envelopeFooter} alt="" className="pointer-events-none absolute -left-10 top-1/2 hidden h-56 w-auto -translate-y-1/2 opacity-40 md:block" />
+        <img src={img.envelopeFooter} alt="" className="pointer-events-none absolute -right-10 top-1/2 hidden h-56 w-auto -translate-y-1/2 opacity-40 md:block" />
+        <h2 className="relative mx-auto max-w-2xl text-4xl font-extrabold text-foreground md:text-5xl">Stay Compliant & Grow Smarter</h2>
+        <p className="relative mx-auto mt-4 max-w-lg text-muted-foreground">Get monthly insights on compliance updates, tax optimization strategies, and HR best practices—delivered directly to your inbox.</p>
+        <a href="#" className="relative mt-8 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg hover:shadow-xl transition">Subscribe Now</a>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border bg-surface py-12">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
+        <Logo />
+        <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} 360 Biz Health. All rights reserved.</p>
+        <div className="flex gap-5 text-sm text-muted-foreground">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+  return (
+    <div className="min-h-screen">
+      <Nav onNavigate={onNavigate} />
+      <Hero />
+      <TrustedBy />
+      <Features />
+      <Benefits />
+      <HowItWorks />
+      <Integrations />
+      <Testimonials />
+      <Pricing />
+      <Compare />
+      <Faq />
+      <Blogs />
+      <Newsletter />
+      <Footer />
+    </div>
+  );
+}
