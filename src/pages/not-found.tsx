@@ -1,16 +1,14 @@
 import Header from "@/components/Header";
+import logoImg from "@/assets/logo.png";
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2.5">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-primary to-orange-400 text-white shadow-md shadow-primary/30">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-        </svg>
-      </div>
-      <span className="text-xl font-extrabold tracking-tight text-slate-800">
-        <span className="text-primary">360</span> BizHealth
-      </span>
+    <div className="flex items-center">
+      <img
+        src={logoImg}
+        alt="360 BizHealth"
+        className="h-10 w-auto object-contain"
+      />
     </div>
   );
 }
