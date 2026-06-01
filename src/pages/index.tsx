@@ -58,12 +58,14 @@ function Nav({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Logo />
+        <a href="/" onClick={(e) => { e.preventDefault(); onNavigate("/"); }} className="hover:opacity-70 transition">
+          <Logo />
+        </a>
         <nav className="hidden items-center gap-7 md:flex">
           {items.map((i) => (
             <a key={i} href={`#${i.toLowerCase()}`} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">{i}</a>
           ))}
-          <button onClick={() => onNavigate("/contact")} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</button>
+          <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate("/contact"); }} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</a>
         </nav>
         <a href="#" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:opacity-90">Get Template</a>
       </div>
