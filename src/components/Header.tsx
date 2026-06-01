@@ -295,21 +295,15 @@ export default function Header({ onNavigate }: HeaderProps) {
         </a>
       </div>
 
-      {/* Mobile Drawer menu overlay */}
+      {/* ----------------- FULL-SCREEN MOBILE OVERLAY MENU ----------------- */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-
-          {/* Drawer Content */}
-          <div className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white p-6 shadow-2xl flex flex-col z-50 animate-in slide-in-from-right duration-300">
-            {/* Header */}
+          {/* Full Screen White Overlay Container */}
+          <div className="fixed inset-0 h-full w-full bg-white p-6 flex flex-col z-50 animate-in fade-in slide-in-from-right duration-300 overflow-y-auto">
+            {/* Header inside overlay */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+                <div className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-primary text-white">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
@@ -323,34 +317,34 @@ export default function Header({ onNavigate }: HeaderProps) {
                 className="p-2 text-slate-500 hover:text-primary transition-colors cursor-pointer"
                 aria-label="Close menu"
               >
-                <X className="h-6 w-6" />
+                <X className="h-7 w-7" />
               </button>
             </div>
 
-            {/* Menu Items */}
-            <div className="flex-1 overflow-y-auto py-6 space-y-4">
+            {/* Menu Navigation Links List */}
+            <div className="flex-1 py-6 space-y-2">
               {menuItems.map((item) => {
                 const hasDropdown = !!item.dropdownItems;
                 const isExpanded = expandedMobileSection === item.key;
 
                 return (
-                  <div key={item.key} className="border-b border-slate-50 pb-3">
+                  <div key={item.key} className="border-b border-slate-50 pb-2">
                     {hasDropdown ? (
                       <div>
                         <button
                           onClick={() => setExpandedMobileSection(isExpanded ? null : item.key)}
-                          className="flex items-center justify-between w-full text-base font-bold text-slate-800 py-1 hover:text-primary transition-colors cursor-pointer"
+                          className="flex items-center justify-between w-full text-[17px] font-bold text-slate-800 py-2.5 hover:text-primary transition-colors cursor-pointer"
                         >
                           {item.title}
                           <ChevronDown
-                            className={`h-4 w-4 text-slate-500 transition-transform duration-300 ${
+                            className={`h-4.5 w-4.5 text-slate-400 transition-transform duration-300 ${
                               isExpanded ? "rotate-180 text-primary" : ""
                             }`}
                           />
                         </button>
                         <div
-                          className={`mt-2 pl-4 space-y-3 overflow-hidden transition-all duration-300 ${
-                            isExpanded ? "max-h-[350px] opacity-100 py-1" : "max-h-0 opacity-0 pointer-events-none"
+                          className={`pl-3 space-y-2.5 overflow-hidden transition-all duration-300 ${
+                            isExpanded ? "max-h-[350px] opacity-100 py-1.5" : "max-h-0 opacity-0 pointer-events-none"
                           }`}
                         >
                           {item.dropdownItems?.map((subItem) => {
@@ -360,10 +354,10 @@ export default function Header({ onNavigate }: HeaderProps) {
                                 key={subItem.title}
                                 href={subItem.href}
                                 onClick={(e) => handleLinkClick(e, subItem.href)}
-                                className="flex items-center gap-3 py-1 hover:text-primary transition-colors"
+                                className="flex items-center gap-3 py-1 hover:text-primary transition-colors animate-in fade-in duration-200"
                               >
-                                <div className="flex h-7 w-7 items-center justify-center rounded bg-slate-50 text-slate-500">
-                                  <Icon className="h-4.5 w-4.5" />
+                                <div className="flex h-7.5 w-7.5 items-center justify-center rounded bg-slate-50 text-slate-500">
+                                  <Icon className="h-4 w-4" />
                                 </div>
                                 <span className="text-sm font-semibold text-slate-700">{subItem.title}</span>
                               </a>
@@ -375,7 +369,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                       <a
                         href={item.href}
                         onClick={(e) => handleLinkClick(e, item.href || "#")}
-                        className="text-base font-bold text-slate-800 py-1 block hover:text-primary transition-colors"
+                        className="text-[17px] font-bold text-slate-800 py-2.5 block hover:text-primary transition-colors"
                       >
                         {item.title}
                       </a>
@@ -385,21 +379,14 @@ export default function Header({ onNavigate }: HeaderProps) {
               })}
             </div>
 
-            {/* Footer Buttons */}
-            <div className="border-t border-slate-100 pt-6 space-y-3">
+            {/* Footer Book a Demo button inside overlay */}
+            <div className="border-t border-slate-100 pt-6 mt-auto">
               <a
                 href="#pricing"
                 onClick={(e) => handleLinkClick(e, "#pricing")}
-                className="flex items-center justify-center w-full py-2.5 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-md shadow-primary/20"
+                className="flex items-center justify-center w-full py-3.5 text-base font-bold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-md shadow-primary/20"
               >
-                Book a Demo
-              </a>
-              <a
-                href="/contact"
-                onClick={(e) => handleLinkClick(e, "/contact")}
-                className="flex items-center justify-center w-full py-2.5 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-md shadow-primary/20"
-              >
-                Login
+                Book a Demo →
               </a>
             </div>
           </div>
