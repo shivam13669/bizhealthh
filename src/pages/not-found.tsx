@@ -1,10 +1,16 @@
+import Header from "@/components/Header";
+
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg>
+    <div className="flex items-center gap-2.5">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-primary to-orange-400 text-white shadow-md shadow-primary/30">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
       </div>
-      <span className="text-lg font-bold tracking-tight">360 Biz Health</span>
+      <span className="text-xl font-extrabold tracking-tight text-slate-800">
+        <span className="text-primary">360</span> BizHealth
+      </span>
     </div>
   );
 }
@@ -12,16 +18,9 @@ function Logo() {
 export default function NotFound({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); onNavigate("/"); }} className="hover:opacity-70 transition">
-            <Logo />
-          </a>
-          <a href="#" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:opacity-90">Get Template</a>
-        </div>
-      </header>
+      <Header onNavigate={onNavigate} />
 
-      <main className="mx-auto max-w-7xl px-6 py-24 text-center">
+      <main className="mx-auto max-w-7xl px-6 pt-28 pb-24 text-center">
         <div className="mx-auto max-w-2xl">
           <div className="mb-8">
             <span className="text-9xl font-extrabold text-primary">404</span>

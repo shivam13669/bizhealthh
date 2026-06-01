@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "@/components/Header";
 import hrTechnology from "@/assets/hr-technology.jpg";
 import statutoryCompliance from "@/assets/statutory-compliance.jpg";
 import financialTaxation from "@/assets/financial-taxation.jpg";
@@ -44,32 +45,16 @@ const img = {
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg>
+    <div className="flex items-center gap-2.5">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-primary to-orange-400 text-white shadow-md shadow-primary/30">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
       </div>
-      <span className="text-lg font-bold tracking-tight">360 Biz Health</span>
+      <span className="text-xl font-extrabold tracking-tight text-slate-800">
+        <span className="text-primary">360</span> BizHealth
+      </span>
     </div>
-  );
-}
-
-function Nav({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
-  const items = ["Features", "Benefits", "Integrations", "Pricing", "FAQ", "Blogs"];
-  return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="/" onClick={(e) => { e.preventDefault(); onNavigate("/"); }} className="hover:opacity-70 transition">
-          <Logo />
-        </a>
-        <nav className="hidden items-center gap-7 md:flex">
-          {items.map((i) => (
-            <a key={i} href={`#${i.toLowerCase()}`} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">{i}</a>
-          ))}
-          <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate("/contact"); }} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</a>
-        </nav>
-        <a href="#" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:opacity-90">Get Template</a>
-      </div>
-    </header>
   );
 }
 
@@ -86,7 +71,7 @@ function FloatingLogo({ src, className, rot = 0 }: { src: string; className: str
 function Hero() {
   return (
     <section className="relative overflow-hidden hero-gradient">
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-12 text-center">
+      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 text-center">
         <FloatingLogo src={img.veltix} className="left-[8%] top-[12%] float-a" rot={-8} />
         <FloatingLogo src={img.nuvio} className="left-[6%] top-[55%] float-c" rot={6} />
         <FloatingLogo src={img.klyra} className="right-[8%] top-[14%] float-b" rot={8} />
@@ -506,7 +491,7 @@ function Footer() {
 export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
   return (
     <div className="min-h-screen">
-      <Nav onNavigate={onNavigate} />
+      <Header onNavigate={onNavigate} />
       <Hero />
       <TrustedBy />
       <Features />
