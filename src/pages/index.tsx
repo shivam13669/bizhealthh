@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import hrTechnology from "@/assets/hr-technology.jpg";
 import statutoryCompliance from "@/assets/statutory-compliance.jpg";
 import financialTaxation from "@/assets/financial-taxation.jpg";
@@ -52,21 +52,93 @@ function Logo() {
   );
 }
 
-function Nav({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
-  const items = ["Features", "Benefits", "Integrations", "Pricing", "FAQ", "Blogs"];
+function NavDropdown({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <div ref={dropdownRef} className="relative group">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-1 text-sm font-medium text-foreground/70 transition hover:text-foreground py-2"
+      >
+        {title}
+        <svg className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-border/20 py-2 z-50">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground hover:bg-surface transition"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Nav({ onNavigate }: { onNavigate: (page: "/" | "/contact") => void }) {
+  const menuItems = [
+    {
+      title: "Services",
+      items: [
+        { label: "HR Technology & HRMS", href: "#" },
+        { label: "Payroll Management", href: "#" },
+        { label: "Statutory Compliance", href: "#" },
+        { label: "Financial & Taxation", href: "#" },
+        { label: "Insurance Advisory", href: "#" },
+      ]
+    },
+    {
+      title: "Resources",
+      items: [
+        { label: "Blog", href: "#" },
+        { label: "Documentation", href: "#" },
+        { label: "Help Center", href: "#" },
+        { label: "Case Studies", href: "#" },
+      ]
+    },
+  ];
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-white/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <a href="/" onClick={(e) => { e.preventDefault(); onNavigate("/"); }} className="hover:opacity-70 transition">
           <Logo />
         </a>
-        <nav className="hidden items-center gap-7 md:flex">
-          {items.map((i) => (
-            <a key={i} href={`#${i.toLowerCase()}`} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">{i}</a>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {menuItems.map((menu) => (
+            <NavDropdown key={menu.title} title={menu.title} items={menu.items} />
           ))}
-          <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate("/contact"); }} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</a>
+
+          <a href="#pricing" className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Pricing</a>
+          <a href="#faq" className="text-sm font-medium text-foreground/70 transition hover:text-foreground">FAQ</a>
         </nav>
-        <a href="#" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:opacity-90">Get Template</a>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate("/contact"); }} className="text-sm font-medium text-foreground/70 transition hover:text-foreground">Contact</a>
+          <a href="#" className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition hover:opacity-90">Get Started</a>
+        </div>
       </div>
     </header>
   );
