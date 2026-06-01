@@ -1,11 +1,10 @@
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg>
-      </div>
-      <span className="text-lg font-bold tracking-tight">360 Biz Health</span>
-    </div>
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets%2F43596492d87340d8ad1ef959dfd2e151%2Fd29800e07e68485f818c1e1b71feb592?format=webp&width=800&height=1200"
+      alt="360 Biz Health"
+      className="h-10 w-auto"
+    />
   );
 }
 
