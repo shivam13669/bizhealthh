@@ -79,15 +79,17 @@ function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
-              <a 
-                href="#pricing"
-                className="w-full sm:w-auto text-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:scale-[1.01] hover:bg-primary/95"
-              >
-                Schedule Free Consultation
-              </a>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground px-1">
-                <span>📅 30-min consultation included</span>
+            <div className="mt-8 flex flex-col items-start gap-3 w-full sm:w-auto">
+              <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+                <a 
+                  href="#pricing"
+                  className="w-full sm:w-auto text-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:scale-[1.01] hover:bg-primary/95 active:scale-[0.99]"
+                >
+                  Schedule Free Consultation
+                </a>
+                <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+                  <span>📅 30-min consultation included</span>
+                </div>
               </div>
             </div>
 
