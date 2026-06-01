@@ -120,14 +120,18 @@ export default function Header({ onNavigate }: HeaderProps) {
   ];
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-2" : "py-4"}`}>
-      {/* Balanced max-width (max-w-[1180px]) prevents elements from stretching too far apart */}
-      <div className="mx-auto max-w-[1180px] px-4 sm:px-6">
+    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "py-3 bg-white border-b border-slate-100 lg:py-2 lg:bg-transparent lg:border-b-0" 
+        : "py-3 bg-white border-b border-slate-100 lg:py-4 lg:bg-transparent lg:border-b-0"
+    }`}>
+      {/* Container wraps inner elements */}
+      <div className="mx-auto max-w-[1180px] lg:px-4">
         <header
-          className={`flex items-center justify-between bg-white border border-slate-100 rounded-full transition-all duration-300 ${
+          className={`mx-auto w-full transition-all duration-300 flex items-center justify-between ${
             isScrolled 
-              ? "h-[66px] px-8 shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)]" 
-              : "h-[78px] px-10 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.05)]"
+              ? "px-4 sm:px-6 lg:max-w-[1180px] lg:h-[66px] lg:px-8 lg:bg-white/95 lg:backdrop-blur-md lg:border lg:border-slate-100 lg:rounded-full lg:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.08)]" 
+              : "px-4 sm:px-6 lg:max-w-[1180px] lg:h-[78px] lg:px-10 lg:bg-white/95 lg:backdrop-blur-md lg:border lg:border-slate-100 lg:rounded-full lg:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.05)]"
           }`}
         >
           {/* Logo */}
@@ -146,7 +150,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             </span>
           </a>
 
-          {/* Centered Desktop Nav Links */}
+          {/* Desktop Nav Links (Hidden on Mobile) */}
           <nav className="hidden lg:flex items-center gap-7">
             {menuItems.map((item) => {
               const hasDropdown = !!item.dropdownItems;
@@ -217,7 +221,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             })}
           </nav>
 
-          {/* Right aligned Buttons - Snug Spacing gap-5 */}
+          {/* Desktop Right Buttons (Hidden on Mobile) */}
           <div className="hidden lg:flex items-center gap-5">
             <a
               href="#pricing"
@@ -235,14 +239,23 @@ export default function Header({ onNavigate }: HeaderProps) {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden p-2 text-slate-600 hover:text-primary transition-colors"
-            aria-label="Open menu"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          {/* Mobile Right Section (Visible ONLY on Mobile/Tablet) */}
+          <div className="flex lg:hidden items-center gap-4.5">
+            <a
+              href="/contact"
+              onClick={(e) => handleLinkClick(e, "/contact")}
+              className="px-4.5 py-1.5 text-xs font-bold text-white bg-primary rounded-full hover:bg-primary/95 transition-all shadow-sm shadow-primary/10"
+            >
+              Login
+            </a>
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="p-1 text-slate-600 hover:text-primary transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="h-6.5 w-6.5" />
+            </button>
+          </div>
         </header>
       </div>
 
