@@ -7,6 +7,9 @@ import statutoryCompliance from "@/assets/statutory-compliance.jpg";
 import financialTaxation from "@/assets/financial-taxation.jpg";
 import insuranceAdvisory from "@/assets/insurance-advisory.jpg";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
+import integrateImg from "@/assets/integrate.jpg";
+import gaugeImg from "@/assets/gauge.jpg";
+import envelopeImg from "@/assets/envelope.jpg";
 
 const FR = "https://framerusercontent.com/images";
 const img = {
@@ -201,9 +204,9 @@ function Benefits() {
 
 function HowItWorks() {
   const steps = [
-    { n: "01", t: "Quick Implementation", d: "Our team handles the setup in 2-4 weeks. You focus on business while we integrate your systems seamlessly.", img: img.integrate },
-    { n: "02", t: "Centralized Control", d: "Manage HR, compliance, taxes, and insurance from one intelligent dashboard with real-time insights.", img: img.gauge },
-    { n: "03", t: "Expert Support", d: "Get dedicated advisory, regular audits, and proactive guidance to stay ahead of regulations and optimize costs.", img: img.envelope },
+    { n: "01", t: "Quick Implementation", d: "Our team handles the setup in 2-4 weeks. You focus on business while we integrate your systems seamlessly.", img: integrateImg },
+    { n: "02", t: "Centralized Control", d: "Manage HR, compliance, taxes, and insurance from one intelligent dashboard with real-time insights.", img: gaugeImg },
+    { n: "03", t: "Expert Support", d: "Get dedicated advisory, regular audits, and proactive guidance to stay ahead of regulations and optimize costs.", img: envelopeImg },
   ];
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
