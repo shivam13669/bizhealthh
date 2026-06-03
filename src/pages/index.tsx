@@ -494,7 +494,7 @@ export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/conta
       <HowItWorks />
       <Integrations />
       <Testimonials />
-      <Pricing />
+      {/* <Pricing /> */}
       <Compare />
       <Faq />
       <Blogs />
