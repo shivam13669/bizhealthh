@@ -3,13 +3,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import logoImg from "@/assets/logo.png";
 import hrTechnology from "@/assets/hr-technology.jpg";
-import statutoryCompliance from "@/assets/statutory-compliance.jpg";
-import financialTaxation from "@/assets/financial-taxation.jpg";
+import statutoryCompliance from "@/assets/statutory-compliance-2.jpg";
+import financialTaxation from "@/assets/tds-labour.jpg";
 import insuranceAdvisory from "@/assets/insurance-advisory.jpg";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import integrateImg from "@/assets/integrate.jpg";
-import gaugeImg from "@/assets/gauge.jpg";
-import envelopeImg from "@/assets/envelope.jpg";
+import integrateImg from "@/assets/company-registration.jpg";
+import gaugeImg from "@/assets/ipr-brand.jpg";
+import envelopeImg from "@/assets/team-retreats.jpg";
+import webSeoImg from "@/assets/web-seo.jpg";
+import integrateHowItWorks from "@/assets/integrate.jpg";
+import gaugeHowItWorks from "@/assets/gauge.jpg";
+import envelopeHowItWorks from "@/assets/envelope.jpg";
 
 const FR = "https://framerusercontent.com/images";
 const img = {
@@ -140,10 +144,80 @@ function TrustedBy() {
 
 function Features() {
   const feats = [
-    { img: hrTechnology, title: "HR Technology & HRMS", desc: "Complete HR solutions including payroll management, attendance tracking, and employee portal automation." },
-    { img: statutoryCompliance, title: "Statutory Compliance", desc: "PF, ESIC, PT, LWF and labour law compliance with zero penalties guaranteed." },
-    { img: financialTaxation, title: "Financial & Taxation", desc: "GST compliance, income tax planning, and strategic financial advisory to save lakhs annually." },
-    { img: insuranceAdvisory, title: "Insurance Advisory", desc: "Comprehensive group health, corporate insurance, and expert claims support for your team." },
+    {
+      img: hrTechnology,
+      title: "HRMS & Payroll",
+      subtitle: "End-to-End HRMS Services",
+      bullets: [
+        "Attendance, GPS Tracking & Leave Management",
+        "Expense Tracking, PMS & Timesheets",
+        "Payroll Processing, Salary Transfer & Recruitment"
+      ]
+    },
+    {
+      img: statutoryCompliance,
+      title: "Statutory Compliance",
+      subtitle: "PF • ESIC • LWF • Professional Tax",
+      bullets: [
+        "Compliance Registration & Filing",
+        "Labour Compliance Management",
+        "End-to-End Statutory Support"
+      ]
+    },
+    {
+      img: financialTaxation,
+      title: "Employee TDS & Labour Law Management",
+      bullets: [
+        "24Q Filing & TDS Returns",
+        "Form 16 Generation & TDS Management",
+        "Shops & Establishment & Labour Compliance"
+      ]
+    },
+    {
+      img: integrateImg,
+      title: "Company Registration & Compliance Filing",
+      bullets: [
+        "Private Limited Registration",
+        "Partnership & LLP Registration",
+        "GST Registration & Filing"
+      ]
+    },
+    {
+      img: insuranceAdvisory,
+      title: "Group Insurance",
+      bullets: [
+        "Group Health Insurance",
+        "Group Personal Accident Insurance",
+        "Employee Insurance Solutions"
+      ]
+    },
+    {
+      img: gaugeImg,
+      title: "IPR & Brand Protection",
+      bullets: [
+        "Trademark Registration",
+        "Copyright Registration",
+        "Design Registration"
+      ]
+    },
+    {
+      img: envelopeImg,
+      title: "Corporate Team Retreats & Workations",
+      bullets: [
+        "Professionally Planned Business Retreats",
+        "Team-Building & Engagement Trips",
+        "Workations at Top Tourist Destinations"
+      ]
+    },
+    {
+      img: webSeoImg,
+      title: "Web, App & SEO",
+      bullets: [
+        "Website Development & Payment Gateway",
+        "Mobile Application Development",
+        "Google Ranking & SEO Services"
+      ]
+    }
   ];
   return (
     <section id="features" className="mx-auto max-w-7xl px-6 py-24">
@@ -155,13 +229,31 @@ function Features() {
 
       <div className="mt-14 grid gap-6 md:grid-cols-2">
         {feats.map((f) => (
-          <div key={f.title} className="group overflow-hidden rounded-3xl border border-border bg-card transition hover:shadow-xl">
+          <div key={f.title} className="group overflow-hidden rounded-3xl border border-border bg-card transition hover:shadow-xl flex flex-col justify-between">
             <div className="aspect-[16/10] overflow-hidden bg-surface">
               <img src={f.img} alt={f.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             </div>
-            <div className="p-7">
-              <h3 className="text-xl font-bold">{f.title}</h3>
-              <p className="mt-2 text-muted-foreground">{f.desc}</p>
+            <div className="p-7 flex flex-col justify-between flex-grow">
+              <div>
+                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-primary transition-colors duration-300">{f.title}</h3>
+                {f.subtitle && (
+                  <span className="inline-block mt-2 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                    {f.subtitle}
+                  </span>
+                )}
+                <ul className="mt-4 space-y-2">
+                  {f.bullets.map((b, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-600 font-medium leading-relaxed">
+                      <span className="mt-1 flex h-4 w-4 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5">
+                          <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ))}
@@ -204,9 +296,9 @@ function Benefits() {
 
 function HowItWorks() {
   const steps = [
-    { n: "01", t: "Quick Implementation", d: "Our team handles the setup in 2-4 weeks. You focus on business while we integrate your systems seamlessly.", img: integrateImg },
-    { n: "02", t: "Centralized Control", d: "Manage HR, compliance, taxes, and insurance from one intelligent dashboard with real-time insights.", img: gaugeImg },
-    { n: "03", t: "Expert Support", d: "Get dedicated advisory, regular audits, and proactive guidance to stay ahead of regulations and optimize costs.", img: envelopeImg },
+    { n: "01", t: "Quick Implementation", d: "Our team handles the setup in 2-4 weeks. You focus on business while we integrate your systems seamlessly.", img: integrateHowItWorks },
+    { n: "02", t: "Centralized Control", d: "Manage HR, compliance, taxes, and insurance from one intelligent dashboard with real-time insights.", img: gaugeHowItWorks },
+    { n: "03", t: "Expert Support", d: "Get dedicated advisory, regular audits, and proactive guidance to stay ahead of regulations and optimize costs.", img: envelopeHowItWorks },
   ];
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">

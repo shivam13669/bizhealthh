@@ -36,19 +36,21 @@ export default function Footer({ onNavigate }: FooterProps) {
   };
 
   const productLinks = [
-    { title: "HR Software", href: "#features" },
-    { title: "Payroll Software", href: "#features" },
-    { title: "Attendance System", href: "#features" },
-    { title: "Expense Management", href: "#features" },
+    { title: "Attendance & Leave Software", href: "#features" },
+    { title: "Payroll & Salary Software", href: "#features" },
+    { title: "Expense & Timesheet Software", href: "#features" },
     { title: "Performance Management", href: "#features" },
-    { title: "Recruitment Software", href: "#features" },
+    { title: "Recruitment & Onboarding", href: "#features" },
   ];
 
   const serviceLinks = [
-    { title: "HR & Payroll Outsourcing", href: "#features" },
     { title: "Statutory Compliance Services", href: "#features" },
-    { title: "Financial & Taxation Advisory", href: "#features" },
-    { title: "Group Health Insurance", href: "#features" },
+    { title: "Company Registration", href: "#features" },
+    { title: "TDS & Labour Law Audit", href: "#features" },
+    { title: "Web, App & SEO Services", href: "#features" },
+    { title: "IPR & Brand Protection", href: "#features" },
+    { title: "Group Insurance Advisory", href: "#features" },
+    { title: "Corporate Retreats & Workations", href: "#features" },
   ];
 
   const resourceLinks = [

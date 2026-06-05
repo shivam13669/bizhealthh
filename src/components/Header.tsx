@@ -23,7 +23,9 @@ import {
   CheckSquare,
   Building2,
   Users2,
-  Mail
+  Mail,
+  Laptop,
+  Search
 } from "lucide-react";
 
 interface HeaderProps {
@@ -79,26 +81,24 @@ export default function Header({ onNavigate }: HeaderProps) {
       title: "Products",
       key: "products",
       dropdownItems: [
-        { title: "HR Software", desc: "Core HR & directory management", icon: Users, href: "#features" },
-        { title: "Payroll Software", desc: "Automated payroll & compliance", icon: CreditCard, href: "#features" },
-        { title: "Attendance Management System", desc: "Biometric & geo-tracked shifts", icon: Calendar, href: "#features" },
-        { title: "Leave Management System", desc: "Leave request & approval workflows", icon: Coffee, href: "#features" },
-        { title: "Expense Management Software", desc: "Digitized expense claims & audits", icon: Receipt, href: "#features" },
-        { title: "Performance Management Software", desc: "Appraisals, KPIs & feedback loops", icon: BarChart3, href: "#features" },
-        { title: "Recruitment Management Software", desc: "Applicant tracking & onboarding", icon: Briefcase, href: "#features" },
-        { title: "Employee Engagement", desc: "Surveys, recognition & rewards", icon: Heart, href: "#features" },
-        { title: "Employee Timesheet Software", desc: "Project-wise time tracking", icon: Clock, href: "#features" },
-        { title: "Flexi Benefits", desc: "Flexible tax-saving benefits", icon: Gift, href: "#features" },
+        { title: "Attendance & Leave Software", desc: "GPS Tracking, biometric shifts & leave requests", icon: Calendar, href: "#features" },
+        { title: "Payroll & Salary Software", desc: "Automated payroll processing & direct transfers", icon: CreditCard, href: "#features" },
+        { title: "Expense & Timesheet Software", desc: "Project time-tracking & digitized expense claims", icon: Receipt, href: "#features" },
+        { title: "Performance Management", desc: "Appraisals, KPIs & employee feedback loops", icon: BarChart3, href: "#features" },
+        { title: "Recruitment & Onboarding", desc: "Applicant tracking & seamless onboarding", icon: Briefcase, href: "#features" },
       ],
     },
     {
       title: "Services",
       key: "services",
       dropdownItems: [
-        { title: "HR & Payroll Outsourcing", desc: "Let experts handle your operations", icon: FileSpreadsheet, href: "#features" },
-        { title: "Statutory Compliance Services", desc: "PF, ESIC, PT & labor law compliance", icon: ShieldCheck, href: "#features" },
-        { title: "Financial & Taxation Advisory", desc: "GST, tax audits & planning", icon: Scale, href: "#features" },
-        { title: "Group Health Insurance", desc: "Premium health policies for employees", icon: HeartPulse, href: "#features" },
+        { title: "Statutory Compliance Services", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "#features" },
+        { title: "Company Registration", desc: "Pvt Ltd, LLP, Partnership & GST registration", icon: Building2, href: "#features" },
+        { title: "TDS & Labour Law Audit", desc: "24Q filing, TDS returns & Form 16 generation", icon: Calculator, href: "#features" },
+        { title: "Web, App & SEO Services", desc: "Websites, Mobile Apps development & Google SEO", icon: Laptop, href: "#features" },
+        { title: "IPR & Brand Protection", desc: "Trademark, Copyright & Design registration", icon: Scale, href: "#features" },
+        { title: "Group Insurance Advisory", desc: "Group Health, Accident & employee coverage", icon: HeartPulse, href: "#features" },
+        { title: "Corporate Retreats & Workations", desc: "Planned business trips, team-building & workations", icon: Coffee, href: "#features" },
       ],
     },
     {
@@ -190,7 +190,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                     {/* Dropdown Menu Pane */}
                     {hasDropdown && activeDropdown === item.key && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="bg-white border border-slate-100 shadow-[0_20px_50px_-12px_rgba(255,92,53,0.12)] rounded-2xl p-4 w-[350px] max-h-[480px] overflow-y-auto">
+                        <div className="bg-white border border-slate-100 shadow-[0_20px_50px_-12px_rgba(255,92,53,0.12)] rounded-2xl p-4 w-[350px] max-h-[480px] overflow-y-auto text-left">
                           <div className="space-y-0.5">
                             {item.dropdownItems?.map((subItem) => {
                               const Icon = subItem.icon;
@@ -335,7 +335,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                         </button>
                         <div
                           className={`pl-3 space-y-2.5 overflow-hidden transition-all duration-300 ${
-                            isExpanded ? "max-h-[350px] opacity-100 py-1.5" : "max-h-0 opacity-0 pointer-events-none"
+                            isExpanded ? "max-h-[500px] opacity-100 py-1.5" : "max-h-0 opacity-0 pointer-events-none"
                           }`}
                         >
                           {item.dropdownItems?.map((subItem) => {
