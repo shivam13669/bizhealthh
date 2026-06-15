@@ -63,7 +63,7 @@ function Hero() {
         <div className="grid gap-12 lg:grid-cols-12 items-center">
           
           {/* Left Column: Content */}
-          <div className="lg:col-span-6 text-left flex flex-col items-start">
+          <div className="lg:col-span-6 text-left flex flex-col items-start lg:pr-16">
             
             {/* Trusted Badge */}
             <div className="inline-flex items-center gap-3 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm mb-6">
@@ -76,13 +76,13 @@ function Hero() {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-[54px] leading-[1.1] max-w-xl animate-fade-in">
-              A Smarter Way to Manage Your Business
+            <h1 className="text-[28px] md:text-[34px] lg:text-[40px] font-semibold tracking-[-0.02em] text-[#070707] leading-[1.2] max-w-[500px] animate-fade-in">
+              An All-in-One Platform to Manage Your Business, HR & Compliance
             </h1>
 
             {/* Description */}
-            <p className="mt-6 text-base text-muted-foreground md:text-lg max-w-xl leading-relaxed">
-              Stop juggling multiple tools. HR, compliance, taxation, insurance and IP—all seamlessly integrated in one intelligent platform.
+            <p className="mt-6 text-[16px] lg:text-[18px] font-semibold text-[#444444] leading-[1.6] max-w-[420px]">
+              Simplify your backend operations by integrating HR, compliance, taxation and employee benefits in one place.
             </p>
 
             {/* CTAs */}
