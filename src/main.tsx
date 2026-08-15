@@ -5,12 +5,13 @@ import Contact from './pages/contact'
 import Login from './pages/login'
 import Pricing from './pages/pricing'
 import NotFound from './pages/not-found'
+import DetailPage from './pages/detail'
 import './styles.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'/' | '/contact' | '/login' | '/pricing' | '404'>('/')
+  const [currentPage, setCurrentPage] = useState<string>('/')
 
-  const handleNavigate = (page: '/' | '/contact' | '/login' | '/pricing') => {
+  const handleNavigate = (page: string) => {
     setCurrentPage(page)
     window.history.pushState({}, '', page)
   }
@@ -18,14 +19,11 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       const pathname = window.location.pathname
-      if (pathname === '/contact') {
-        setCurrentPage('/contact')
-      } else if (pathname === '/login') {
-        setCurrentPage('/login')
-      } else if (pathname === '/pricing') {
-        setCurrentPage('/pricing')
-      } else if (pathname === '/') {
-        setCurrentPage('/')
+      const isKnownStaticRoute = pathname === '/' || pathname === '/contact' || pathname === '/login' || pathname === '/pricing';
+      const isDynamicDetailRoute = pathname.startsWith('/products/') || pathname.startsWith('/services/') || pathname.startsWith('/resources/') || pathname.startsWith('/about/');
+      
+      if (isKnownStaticRoute || isDynamicDetailRoute) {
+        setCurrentPage(pathname)
       } else {
         setCurrentPage('404')
       }
@@ -35,14 +33,11 @@ function App() {
 
     // Set initial page based on current URL
     const pathname = window.location.pathname
-    if (pathname === '/contact') {
-      setCurrentPage('/contact')
-    } else if (pathname === '/login') {
-      setCurrentPage('/login')
-    } else if (pathname === '/pricing') {
-      setCurrentPage('/pricing')
-    } else if (pathname === '/') {
-      setCurrentPage('/')
+    const isKnownStaticRoute = pathname === '/' || pathname === '/contact' || pathname === '/login' || pathname === '/pricing';
+    const isDynamicDetailRoute = pathname.startsWith('/products/') || pathname.startsWith('/services/') || pathname.startsWith('/resources/') || pathname.startsWith('/about/');
+    
+    if (isKnownStaticRoute || isDynamicDetailRoute) {
+      setCurrentPage(pathname)
     } else {
       setCurrentPage('404')
     }
@@ -54,12 +49,18 @@ function App() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const isDynamicRoute = currentPage.startsWith('/products/') || 
+                         currentPage.startsWith('/services/') || 
+                         currentPage.startsWith('/resources/') || 
+                         currentPage.startsWith('/about/');
+
   return (
     <>
       {currentPage === '/' && <Index onNavigate={handleNavigate} />}
       {currentPage === '/contact' && <Contact onNavigate={handleNavigate} />}
       {currentPage === '/login' && <Login onNavigate={handleNavigate} />}
       {currentPage === '/pricing' && <Pricing onNavigate={handleNavigate} />}
+      {isDynamicRoute && <DetailPage currentPath={currentPage} onNavigate={handleNavigate} />}
       {currentPage === '404' && <NotFound onNavigate={handleNavigate} />}
     </>
   )

@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 interface HeaderProps {
-  onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void;
+  onNavigate: (page: string) => void;
 }
 
 export default function Header({ onNavigate }: HeaderProps) {
@@ -50,7 +50,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     if (href.startsWith("#")) {
       e.preventDefault();
       const currentPath = window.location.pathname;
-      if (currentPath === "/contact" || currentPath === "/login" || currentPath === "/pricing") {
+      if (currentPath !== "/") {
         onNavigate("/");
         setTimeout(() => {
           const el = document.getElementById(href.substring(1));
@@ -60,18 +60,9 @@ export default function Header({ onNavigate }: HeaderProps) {
         const el = document.getElementById(href.substring(1));
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (href === "/contact") {
+    } else if (href.startsWith("/")) {
       e.preventDefault();
-      onNavigate("/contact");
-    } else if (href === "/pricing") {
-      e.preventDefault();
-      onNavigate("/pricing");
-    } else if (href === "/login") {
-      e.preventDefault();
-      onNavigate("/login");
-    } else if (href === "/") {
-      e.preventDefault();
-      onNavigate("/");
+      onNavigate(href);
     }
     setMobileMenuOpen(false);
   };
@@ -81,24 +72,24 @@ export default function Header({ onNavigate }: HeaderProps) {
       title: "Products",
       key: "products",
       dropdownItems: [
-        { title: "Attendance & Leave Software", desc: "GPS Tracking, biometric shifts & leave requests", icon: Calendar, href: "#features" },
-        { title: "Payroll & Salary Software", desc: "Automated payroll processing & direct transfers", icon: CreditCard, href: "#features" },
-        { title: "Expense & Timesheet Software", desc: "Project time-tracking & digitized expense claims", icon: Receipt, href: "#features" },
-        { title: "Performance Management", desc: "Appraisals, KPIs & employee feedback loops", icon: BarChart3, href: "#features" },
-        { title: "Recruitment & Onboarding", desc: "Applicant tracking & seamless onboarding", icon: Briefcase, href: "#features" },
+        { title: "Attendance & Leave Software", desc: "GPS Tracking, biometric shifts & leave requests", icon: Calendar, href: "/products/attendance-leave" },
+        { title: "Payroll & Salary Software", desc: "Automated payroll processing & direct transfers", icon: CreditCard, href: "/products/payroll-salary" },
+        { title: "Expense & Timesheet Software", desc: "Project time-tracking & digitized expense claims", icon: Receipt, href: "/products/expense-timesheet" },
+        { title: "Performance Management", desc: "Appraisals, KPIs & employee feedback loops", icon: BarChart3, href: "/products/performance-management" },
+        { title: "Recruitment & Onboarding", desc: "Applicant tracking & seamless onboarding", icon: Briefcase, href: "/products/recruitment-onboarding" },
       ],
     },
     {
       title: "Services",
       key: "services",
       dropdownItems: [
-        { title: "Statutory Compliance Services", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "#features" },
-        { title: "Company Registration", desc: "Pvt Ltd, LLP, Partnership & GST registration", icon: Building2, href: "#features" },
-        { title: "TDS & Labour Law Audit", desc: "24Q filing, TDS returns & Form 16 generation", icon: Calculator, href: "#features" },
-        { title: "Web, App & SEO Services", desc: "Websites, Mobile Apps development & Google SEO", icon: Laptop, href: "#features" },
-        { title: "IPR & Brand Protection", desc: "Trademark, Copyright & Design registration", icon: Scale, href: "#features" },
-        { title: "Group Insurance Advisory", desc: "Group Health, Accident & employee coverage", icon: HeartPulse, href: "#features" },
-        { title: "Corporate Retreats & Workations", desc: "Planned business trips, team-building & workations", icon: Coffee, href: "#features" },
+        { title: "Statutory Compliance Services", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "/services/statutory-compliance" },
+        { title: "Company Registration", desc: "Pvt Ltd, LLP, Partnership & GST registration", icon: Building2, href: "/services/company-registration" },
+        { title: "TDS & Labour Law Audit", desc: "24Q filing, TDS returns & Form 16 generation", icon: Calculator, href: "/services/tds-labour-audit" },
+        { title: "Web, App & SEO Services", desc: "Websites, Mobile Apps development & Google SEO", icon: Laptop, href: "/services/web-app-seo" },
+        { title: "IPR & Brand Protection", desc: "Trademark, Copyright & Design registration", icon: Scale, href: "/services/ipr-brand-protection" },
+        { title: "Group Insurance Advisory", desc: "Group Health, Accident & employee coverage", icon: HeartPulse, href: "/services/group-insurance" },
+        { title: "Corporate Retreats & Workations", desc: "Planned business trips, team-building & workations", icon: Coffee, href: "/services/corporate-retreats" },
       ],
     },
     {
@@ -110,17 +101,17 @@ export default function Header({ onNavigate }: HeaderProps) {
       title: "Resources",
       key: "resources",
       dropdownItems: [
-        { title: "Blogs & News", desc: "Expert compliance & HR insights", icon: BookOpen, href: "#blogs" },
-        { title: "Tax Calculators", desc: "Gratuity, EPF & HRA calculators", icon: Calculator, href: "#features" },
-        { title: "Case Studies", desc: "See how we help clients scale", icon: CheckSquare, href: "#benefits" },
+        { title: "Blogs & News", desc: "Expert compliance & HR insights", icon: BookOpen, href: "/resources/blogs-news" },
+        { title: "Tax Calculators", desc: "Gratuity, EPF & HRA calculators", icon: Calculator, href: "/resources/tax-calculators" },
+        { title: "Case Studies", desc: "See how we help clients scale", icon: CheckSquare, href: "/resources/case-studies" },
       ],
     },
     {
       title: "About Us",
       key: "about",
       dropdownItems: [
-        { title: "Our Story", desc: "Who we are & our mission", icon: Building2, href: "#benefits" },
-        { title: "Careers", desc: "Join our fast-growing team", icon: Users2, href: "#benefits" },
+        { title: "Our Story", desc: "Who we are & our mission", icon: Building2, href: "/about/our-story" },
+        { title: "Careers", desc: "Join our fast-growing team", icon: Users2, href: "/about/careers" },
         { title: "Contact Us", desc: "Get in touch with our team", icon: Mail, href: "/contact" },
       ],
     },
@@ -189,9 +180,15 @@ export default function Header({ onNavigate }: HeaderProps) {
 
                     {/* Dropdown Menu Pane */}
                     {hasDropdown && activeDropdown === item.key && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="bg-white border border-slate-100 shadow-[0_20px_50px_-12px_rgba(255,92,53,0.12)] rounded-2xl p-4 w-[350px] max-h-[480px] overflow-y-auto text-left">
-                          <div className="space-y-0.5">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className={`bg-white border border-slate-100 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] rounded-[20px] p-3.5 max-h-[480px] overflow-y-auto text-left ${
+                          item.key === "services" 
+                            ? "w-[360px]" 
+                            : item.key === "products" 
+                            ? "w-[330px]" 
+                            : "w-[240px]"
+                        }`}>
+                          <div className="space-y-1">
                             {item.dropdownItems?.map((subItem) => {
                               const Icon = subItem.icon;
                               return (
@@ -199,21 +196,12 @@ export default function Header({ onNavigate }: HeaderProps) {
                                   key={subItem.title}
                                   href={subItem.href}
                                   onClick={(e) => handleLinkClick(e, subItem.href)}
-                                  className="group flex items-start gap-3 p-2 rounded-xl hover:bg-orange-50/50 transition-colors"
+                                  className="group flex items-center gap-3.5 px-4 py-3 rounded-[12px] bg-transparent hover:bg-slate-50 transition-colors duration-150"
                                 >
-                                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-50 group-hover:bg-primary/10 text-slate-500 group-hover:text-primary transition-colors">
-                                    <Icon className="h-4.5 w-4.5 stroke-[1.8]" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-bold text-slate-800 group-hover:text-primary transition-colors">
-                                      {subItem.title}
-                                    </p>
-                                    {subItem.desc && (
-                                      <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
-                                        {subItem.desc}
-                                      </p>
-                                    )}
-                                  </div>
+                                  <Icon className="h-5 w-5 shrink-0 text-slate-500 group-hover:text-primary transition-colors stroke-[1.8]" />
+                                  <span className="text-[14.5px] font-semibold text-slate-700 group-hover:text-primary transition-colors">
+                                    {subItem.title}
+                                  </span>
                                 </a>
                               );
                             })}
