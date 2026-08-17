@@ -72,14 +72,10 @@ export default function Header({ onNavigate }: HeaderProps) {
       title: "Services",
       key: "services",
       dropdownItems: [
-        { title: "HRMS", desc: "Attendance, Payroll, Expense & Performance suite", icon: Users, href: "/services/hrms" },
-        { title: "Statutory Compliance Services", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "/services/statutory-compliance" },
-        { title: "Company Registration", desc: "Pvt Ltd, LLP, Partnership & GST registration", icon: Building2, href: "/services/company-registration" },
-        { title: "TDS & Labour Law Audit", desc: "24Q filing, TDS returns & Form 16 generation", icon: Calculator, href: "/services/tds-labour-audit" },
-        { title: "Web, App & SEO Services", desc: "Websites, Mobile Apps development & Google SEO", icon: Laptop, href: "/services/web-app-seo" },
-        { title: "IPR & Brand Protection", desc: "Trademark, Copyright & Design registration", icon: Scale, href: "/services/ipr-brand-protection" },
-        { title: "Group Insurance Advisory", desc: "Group Health, Accident & employee coverage", icon: HeartPulse, href: "/services/group-insurance" },
-        { title: "Corporate Retreats & Workations", desc: "Planned business trips, team-building & workations", icon: Coffee, href: "/services/corporate-retreats" },
+        { title: "End-to-End HRMS", desc: "Attendance, Payroll, Expense & Performance suite", icon: Users, href: "/services/hrms" },
+        { title: "Payroll, TDS & Labour Compliance", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "/services/statutory-compliance" },
+        { title: "IPR & Certifications", desc: "Trademark, Copyright & Design registration", icon: Scale, href: "/services/ipr-brand-protection" },
+        { title: "Corporate Retreats & Workation", desc: "Planned business trips, team-building & workations", icon: Coffee, href: "/services/corporate-retreats" },
       ],
     },
     {
@@ -100,9 +96,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     {
       title: "About Us",
       key: "about",
-      dropdownItems: [
-        { title: "Our Story", desc: "Who we are & our mission", icon: Building2, href: "/about/our-story" },
-      ],
+      href: "/about/our-story",
     },
   ];
 

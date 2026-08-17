@@ -35,13 +35,9 @@ export default function Footer({ onNavigate }: FooterProps) {
   ];
 
   const serviceLinks = [
-    { title: "Statutory Compliance Services", href: "/services/statutory-compliance" },
-    { title: "Company Registration", href: "/services/company-registration" },
-    { title: "TDS & Labour Law Audit", href: "/services/tds-labour-audit" },
-    { title: "Web, App & SEO Services", href: "/services/web-app-seo" },
-    { title: "IPR & Brand Protection", href: "/services/ipr-brand-protection" },
-    { title: "Group Insurance Advisory", href: "/services/group-insurance" },
-    { title: "Corporate Retreats & Workations", href: "/services/corporate-retreats" },
+    { title: "Payroll, TDS & Labour Compliance", href: "/services/statutory-compliance" },
+    { title: "IPR & Certifications", href: "/services/ipr-brand-protection" },
+    { title: "Corporate Retreats & Workation", href: "/services/corporate-retreats" },
   ];
 
   const resourceLinks = [
@@ -52,7 +48,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   ];
 
   const companyLinks = [
-    { title: "Our Story", href: "/about/our-story" },
+    { title: "About Us", href: "/about/our-story" },
     { title: "Careers", href: "/about/careers", badge: "We're Hiring!" },
     { title: "Pricing", href: "/pricing" },
     { title: "Contact Us", href: "/contact" },
