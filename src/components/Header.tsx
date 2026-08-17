@@ -89,14 +89,14 @@ export default function Header({ onNavigate }: HeaderProps) {
       href: "/about/careers",
     },
     {
-      title: "Contact Us",
-      key: "contact",
-      href: "/contact",
-    },
-    {
       title: "About Us",
       key: "about",
       href: "/about/our-story",
+    },
+    {
+      title: "Contact Us",
+      key: "contact",
+      href: "/contact",
     },
   ];
 
