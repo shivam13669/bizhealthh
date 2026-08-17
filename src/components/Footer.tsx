@@ -2,7 +2,7 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, MapPin, Phone } from "luc
 import logoImg from "@/assets/logo.png";
 
 interface FooterProps {
-  onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void;
+  onNavigate: (page: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -10,7 +10,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     if (href.startsWith("#")) {
       e.preventDefault();
       const currentPath = window.location.pathname;
-      if (currentPath === "/contact" || currentPath === "/pricing" || currentPath === "/login") {
+      if (currentPath !== "/") {
         onNavigate("/");
         setTimeout(() => {
           const el = document.getElementById(href.substring(1));
@@ -20,49 +20,40 @@ export default function Footer({ onNavigate }: FooterProps) {
         const el = document.getElementById(href.substring(1));
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (href === "/contact") {
+    } else if (href.startsWith("/")) {
       e.preventDefault();
-      onNavigate("/contact");
-    } else if (href === "/pricing") {
-      e.preventDefault();
-      onNavigate("/pricing");
-    } else if (href === "/login") {
-      e.preventDefault();
-      onNavigate("/login");
-    } else if (href === "/") {
-      e.preventDefault();
-      onNavigate("/");
+      onNavigate(href);
     }
   };
 
   const productLinks = [
-    { title: "Attendance & Leave Software", href: "#features" },
-    { title: "Payroll & Salary Software", href: "#features" },
-    { title: "Expense & Timesheet Software", href: "#features" },
-    { title: "Performance Management", href: "#features" },
-    { title: "Recruitment & Onboarding", href: "#features" },
+    { title: "HRMS Suite", href: "/services/hrms" },
+    { title: "Attendance & Leave", href: "/services/hrms" },
+    { title: "Payroll & Salary", href: "/services/hrms" },
+    { title: "Expense & Timesheet", href: "/services/hrms" },
+    { title: "Performance Management", href: "/services/hrms" },
   ];
 
   const serviceLinks = [
-    { title: "Statutory Compliance Services", href: "#features" },
-    { title: "Company Registration", href: "#features" },
-    { title: "TDS & Labour Law Audit", href: "#features" },
-    { title: "Web, App & SEO Services", href: "#features" },
-    { title: "IPR & Brand Protection", href: "#features" },
-    { title: "Group Insurance Advisory", href: "#features" },
-    { title: "Corporate Retreats & Workations", href: "#features" },
+    { title: "Statutory Compliance Services", href: "/services/statutory-compliance" },
+    { title: "Company Registration", href: "/services/company-registration" },
+    { title: "TDS & Labour Law Audit", href: "/services/tds-labour-audit" },
+    { title: "Web, App & SEO Services", href: "/services/web-app-seo" },
+    { title: "IPR & Brand Protection", href: "/services/ipr-brand-protection" },
+    { title: "Group Insurance Advisory", href: "/services/group-insurance" },
+    { title: "Corporate Retreats & Workations", href: "/services/corporate-retreats" },
   ];
 
   const resourceLinks = [
-    { title: "Blogs & News", href: "#blogs" },
-    { title: "Tax Calculators", href: "#features" },
-    { title: "Case Studies", href: "#benefits" },
+    { title: "Blogs & News", href: "/resources/blogs-news" },
+    { title: "Tax Calculators", href: "/resources/tax-calculators" },
+    { title: "Case Studies", href: "/resources/case-studies" },
     { title: "Help Center", href: "/contact" },
   ];
 
   const companyLinks = [
-    { title: "Our Story", href: "#benefits" },
-    { title: "Careers", href: "#benefits", badge: "We're Hiring!" },
+    { title: "Our Story", href: "/about/our-story" },
+    { title: "Careers", href: "/about/careers", badge: "We're Hiring!" },
     { title: "Pricing", href: "/pricing" },
     { title: "Contact Us", href: "/contact" },
     { title: "Privacy Policy", href: "#" },
@@ -112,9 +103,9 @@ export default function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 2: Products */}
+          {/* Column 2: HRMS */}
           <div>
-            <h3 className="text-slate-900 text-sm font-bold tracking-wider uppercase mb-5">Products</h3>
+            <h3 className="text-slate-900 text-sm font-bold tracking-wider uppercase mb-5">HRMS</h3>
             <ul className="space-y-3.5">
               {productLinks.map((link) => (
                 <li key={link.title}>

@@ -11,7 +11,7 @@ import {
   Activity
 } from "lucide-react";
 
-export default function Login({ onNavigate }: { onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void }) {
+export default function Login({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);

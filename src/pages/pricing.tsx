@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 interface PricingProps {
-  onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void;
+  onNavigate: (page: string) => void;
 }
 
 export default function PricingPage({ onNavigate }: PricingProps) {

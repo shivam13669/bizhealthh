@@ -69,20 +69,10 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   const menuItems = [
     {
-      title: "Products",
-      key: "products",
-      dropdownItems: [
-        { title: "Attendance & Leave Software", desc: "GPS Tracking, biometric shifts & leave requests", icon: Calendar, href: "/products/attendance-leave" },
-        { title: "Payroll & Salary Software", desc: "Automated payroll processing & direct transfers", icon: CreditCard, href: "/products/payroll-salary" },
-        { title: "Expense & Timesheet Software", desc: "Project time-tracking & digitized expense claims", icon: Receipt, href: "/products/expense-timesheet" },
-        { title: "Performance Management", desc: "Appraisals, KPIs & employee feedback loops", icon: BarChart3, href: "/products/performance-management" },
-        { title: "Recruitment & Onboarding", desc: "Applicant tracking & seamless onboarding", icon: Briefcase, href: "/products/recruitment-onboarding" },
-      ],
-    },
-    {
       title: "Services",
       key: "services",
       dropdownItems: [
+        { title: "HRMS", desc: "Attendance, Payroll, Expense & Performance suite", icon: Users, href: "/services/hrms" },
         { title: "Statutory Compliance Services", desc: "PF, ESIC, LWF & labour law compliance", icon: ShieldCheck, href: "/services/statutory-compliance" },
         { title: "Company Registration", desc: "Pvt Ltd, LLP, Partnership & GST registration", icon: Building2, href: "/services/company-registration" },
         { title: "TDS & Labour Law Audit", desc: "24Q filing, TDS returns & Form 16 generation", icon: Calculator, href: "/services/tds-labour-audit" },
@@ -93,26 +83,25 @@ export default function Header({ onNavigate }: HeaderProps) {
       ],
     },
     {
-      title: "Pricing",
-      key: "pricing",
-      href: "/pricing",
+      title: "Blog",
+      key: "blog",
+      href: "/resources/blogs-news",
     },
     {
-      title: "Resources",
-      key: "resources",
-      dropdownItems: [
-        { title: "Blogs & News", desc: "Expert compliance & HR insights", icon: BookOpen, href: "/resources/blogs-news" },
-        { title: "Tax Calculators", desc: "Gratuity, EPF & HRA calculators", icon: Calculator, href: "/resources/tax-calculators" },
-        { title: "Case Studies", desc: "See how we help clients scale", icon: CheckSquare, href: "/resources/case-studies" },
-      ],
+      title: "Careers",
+      key: "careers",
+      href: "/about/careers",
+    },
+    {
+      title: "Contact Us",
+      key: "contact",
+      href: "/contact",
     },
     {
       title: "About Us",
       key: "about",
       dropdownItems: [
         { title: "Our Story", desc: "Who we are & our mission", icon: Building2, href: "/about/our-story" },
-        { title: "Careers", desc: "Join our fast-growing team", icon: Users2, href: "/about/careers" },
-        { title: "Contact Us", desc: "Get in touch with our team", icon: Mail, href: "/contact" },
       ],
     },
   ];
@@ -172,7 +161,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                       <a
                         href={item.href}
                         onClick={(e) => handleLinkClick(e, item.href || "#")}
-                        className="text-[15px] font-semibold text-slate-700 hover:text-primary py-2 transition-colors block"
+                        className="inline-flex items-center text-[15px] font-semibold text-slate-700 hover:text-primary transition-colors cursor-pointer"
                       >
                         {item.title}
                       </a>

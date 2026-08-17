@@ -145,16 +145,6 @@ function TrustedBy() {
 function Features() {
   const feats = [
     {
-      img: hrTechnology,
-      title: "HRMS & Payroll",
-      subtitle: "End-to-End HRMS Services",
-      bullets: [
-        "Attendance, GPS Tracking & Leave Management",
-        "Expense Tracking, PMS & Timesheets",
-        "Payroll Processing, Salary Transfer & Recruitment"
-      ]
-    },
-    {
       img: statutoryCompliance,
       title: "Statutory Compliance",
       subtitle: "PF • ESIC • LWF • Professional Tax",
@@ -575,7 +565,7 @@ function Newsletter() {
   );
 }
 
-export default function Index({ onNavigate }: { onNavigate: (page: "/" | "/contact" | "/login" | "/pricing") => void }) {
+export default function Index({ onNavigate }: { onNavigate: (page: string) => void }) {
   return (
     <div className="min-h-screen">
       <Header onNavigate={onNavigate} />

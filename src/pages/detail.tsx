@@ -436,7 +436,7 @@ function PayrollOutsourcingHeroMockup() {
 }
 
 function renderHeroGraphic(currentPath: string, title: string) {
-  if (currentPath === "/products/attendance-leave") {
+  if (currentPath === "/products/attendance-leave" || currentPath === "/services/hrms") {
     return <LeaveManagementHeroMockup />;
   }
   if (currentPath === "/services/statutory-compliance") {
@@ -484,6 +484,77 @@ const detailPagesData: Record<
     faqs: { q: string; a: string }[];
   }
 > = {
+  "/services/hrms": {
+    heroCategory: "HRMS & Payroll Suite",
+    heroHeadline: "All-in-One HRMS Software: Attendance, Payroll, Expenses & Performance",
+    heroSubtitle: "Streamline your entire employee lifecycle. From recruitment and onboarding to geofenced attendance, automated payroll processing, expense tracking, and performance reviews—all integrated into a single unified cloud dashboard.",
+    heroImage: hrTechnology,
+    trustLogoText: "Powering Operations & Employee Management for 500+ Indian Corporates",
+    introParagraph: "Managing multiple fragmented HR tools leads to errors, compliance gaps, and wasted hours. 360 BizHealth's unified HRMS suite brings your team's attendance records, payroll calculators, timesheets, and appraisals under one roof. Automated workflows ensure that field geofenced clock-ins and leave calculations feed directly into your monthly payroll payouts for zero-error salaries.",
+    features: [
+      {
+        title: "Attendance & Leave Management (GPS Tracker)",
+        desc: "Ditch manual registers and spreadsheet inputs. Secure real-time shift scheduling, location-bound geofenced clock-ins, biometric integrations, and automated leave approvals.",
+        featureImage: heroDashboard,
+        bullets: [
+          { boldText: "GPS Geofencing", normalText: "Define coordinates to restrict clock-ins to physical offices or verified client sites." },
+          { boldText: "Automated Roster Engine", normalText: "Manage rotative schedules, evening shifts, and Factories Act grace periods." },
+          { boldText: "Real-time Sync", normalText: "Sync logs from physical biometric devices directly with cloud servers instantly." }
+        ]
+      },
+      {
+        title: "Payroll & Salary Processing",
+        desc: "Process compliant salaries in under 15 minutes. Automate EPF, ESIC, Professional Tax, and TDS calculations. Generate direct bank transfer files and issue itemized digital payslips.",
+        featureImage: financialTaxation,
+        bullets: [
+          { boldText: "Dual Regime Tax Planner", normalText: "Compare Old vs New Tax Regime calculations on employee portals." },
+          { boldText: "Statutory Filing Files", normalText: "Generate government portal-ready files for monthly EPF/ESIC return uploads." },
+          { boldText: "Full & Final Settlement", normalText: "Automate calculation of pro-rata payouts, gratuity, and notice period payouts." }
+        ]
+      },
+      {
+        title: "Expense Claims & Project Timesheets",
+        desc: "Allow employees to submit travel expense bills via smartphone scans. Track billable project hours on visual timesheets, with automated manager approval levels.",
+        featureImage: webSeoImg,
+        bullets: [
+          { boldText: "OCR Receipt Reader", normalText: "Extract date, merchant, and amount details automatically from uploaded receipt photos." },
+          { boldText: "Corporate Policy Compliance", normalText: "Alert managers if a submission exceeds predefined category budgets." },
+          { boldText: "Salary Integration", normalText: "Flow approved reimbursements directly into the monthly payroll cycle." }
+        ]
+      },
+      {
+        title: "Performance Management (PMS)",
+        desc: "Align your organization around core metrics. Set clear KPIs, manage quarterly appraisals, and gather 360-degree feedback with simple appraisal forms.",
+        featureImage: hrTechnology,
+        bullets: [
+          { boldText: "Goal Tracking", normalText: "Define key result areas (KRAs) and track performance metrics in real time." },
+          { boldText: "Continuous Feedback", normalText: "Enable weekly check-ins and performance reviews between team leads and members." },
+          { boldText: "Appraisal Calibration", normalText: "Map appraisal scores directly into compensation revision workflows." }
+        ]
+      },
+      {
+        title: "Recruitment & Onboarding",
+        desc: "From job postings to digital offer letters. Streamline your hiring pipeline with applicant tracking tools and paperless new hire onboarding.",
+        featureImage: integrateImg,
+        bullets: [
+          { boldText: "Applicant Tracking (ATS)", normalText: "Manage resumes, schedule interviews, and track application stages in one panel." },
+          { boldText: "Digital Document Collection", normalText: "Collect PAN, Aadhaar, and education certificates before day one." },
+          { boldText: "First-day Integration", normalText: "Auto-create login accounts, email IDs, and attendance profiles upon onboarding approval." }
+        ]
+      }
+    ],
+    testimonials: {
+      quote: "By consolidating our attendance tracking, expense claims, and payroll processing into 360 BizHealth's HRMS, we eliminated calculation discrepancies entirely and saved 5 working days for our HR team every month.",
+      author: "Rajesh Kumar",
+      role: "VP of HR Operations",
+      company: "Indo Tech Logics"
+    },
+    faqs: [
+      { q: "Is the HRMS system fully integrated with payroll?", a: "Yes, geofenced logs, shift records, leave requests, and approved expense claims all sync automatically to calculate accurate payouts." },
+      { q: "Can we buy modules individually or as a bundle?", a: "We offer both options. You can start with attendance tracking and payroll, and easily enable other modules as your team scales." },
+      { q: "How secure is employee data on the platform?", a: "We use enterprise-grade bank encryption and strictly adhere to compliance and data protection guidelines in India." }
+    ]
+  },
   "/products/attendance-leave": {
     heroCategory: "Attendance & Leave Software",
     heroHeadline: "Complete Online Leave Management System & GPS Attendance Tracker",
@@ -787,6 +858,7 @@ export default function DetailPage({ currentPath, onNavigate }: DetailProps) {
   // Determine background color of the hero banner based on the route (exact Quikchex colors)
   const getHeroBgColor = (path: string) => {
     if (path === "/products/attendance-leave") return "bg-[#714B67]"; // Plum/wine
+    if (path === "/services/hrms") return "bg-[#5D3A6A]"; // Deep Purple/Wine
     if (path === "/services/statutory-compliance") return "bg-[#3D3C5C]"; // Deep navy/slate-blue
     if (path === "/products/payroll-salary") return "bg-[#585754]"; // Charcoal Slate
     if (path === "/products/expense-timesheet") return "bg-[#4F5D75]"; // Steel Blue
