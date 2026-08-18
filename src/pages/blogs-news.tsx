@@ -19,13 +19,12 @@ import {
   X,
 } from "lucide-react";
 
-import hrTechnology from "@/assets/hr-technology.jpg";
-import statutoryCompliance from "@/assets/statutory-compliance-2.jpg";
-import financialTaxation from "@/assets/financial-taxation.jpg";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
 import teamRetreats from "@/assets/team-retreats.jpg";
 
-const hrmsArticleImage = "https://images.pexels.com/photos/34206104/pexels-photo-34206104.png";
+const poshArticleImage = "https://images.pexels.com/photos/8853403/pexels-photo-8853403.jpeg";
+const hrmsArticleImage = "https://images.pexels.com/photos/7109314/pexels-photo-7109314.jpeg";
+const leaveArticleImage = "https://images.pexels.com/photos/33014979/pexels-photo-33014979.jpeg";
+const fnfArticleImage = "https://images.pexels.com/photos/38783382/pexels-photo-38783382.jpeg";
 
 interface BlogPageProps {
   onNavigate: (page: string) => void;
@@ -70,7 +69,7 @@ const articles: Article[] = [
     description: "A practical guide to workplace safety, Internal Committees, complaint timelines, employer duties and the latest POSH compliance updates for India.",
     date: "06 January 2026",
     readTime: "8 min read",
-    image: statutoryCompliance,
+    image: poshArticleImage,
     author: "360 BizHealth Editorial Team",
     quickAnswer: ["The POSH Act protects women from sexual harassment at work and establishes a fair redressal process.", "Every organization with 10 or more employees must constitute an Internal Committee.", "Complaints are generally filed within three months; the inquiry should finish within 90 days.", "Training, confidentiality, visible policies and accurate annual disclosures are core employer responsibilities."],
     sections: [
@@ -132,7 +131,7 @@ const articles: Article[] = [
     description: "Build an inclusive, flexible and compliant leave framework that supports employee wellbeing without compromising business continuity.",
     date: "29 December 2025",
     readTime: "9 min read",
-    image: heroDashboard,
+    image: leaveArticleImage,
     author: "360 BizHealth Editorial Team",
     quickAnswer: ["There is no universal leave policy: size, industry, work model, employee mix and state laws all matter.", "A balanced framework usually covers sick, casual, earned, parental, bereavement, public, floating and wellness leave.", "Define eligibility, accrual, carry-forward, encashment, approvals and documentation in plain language.", "Review the policy at least annually and whenever labour laws, business structures or workforce needs change."],
     sections: [
@@ -161,7 +160,7 @@ const articles: Article[] = [
     description: "Understand salary, leave encashment, gratuity, deductions, clearances, timelines and documentation for a smoother employee exit.",
     date: "22 December 2025",
     readTime: "7 min read",
-    image: financialTaxation,
+    image: fnfArticleImage,
     author: "360 BizHealth Editorial Team",
     quickAnswer: ["FnF settles all financial obligations when an employee resigns, retires, is terminated or completes a contract.", "It can include unpaid salary, allowances, leave encashment, gratuity, bonuses, reimbursements, deductions and asset recovery.", "A clear internal target is usually 30–45 days after exit, while statutory payments such as gratuity follow their own requirements.", "A detailed statement, approvals and cross-functional clearance help reduce disputes and build trust."],
     sections: [
