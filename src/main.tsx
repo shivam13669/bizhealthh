@@ -6,7 +6,7 @@ import Login from './pages/login'
 import Pricing from './pages/pricing'
 import NotFound from './pages/not-found'
 import DetailPage from './pages/detail'
-import BlogsNews from './pages/blogs-news'
+import BlogsNews, { BlogArticle } from './pages/blogs-news'
 import './styles.css'
 
 function App() {
@@ -62,7 +62,8 @@ function App() {
       {currentPage === '/login' && <Login onNavigate={handleNavigate} />}
       {currentPage === '/pricing' && <Pricing onNavigate={handleNavigate} />}
       {currentPage === '/resources/blogs-news' && <BlogsNews onNavigate={handleNavigate} />}
-      {isDynamicRoute && currentPage !== '/resources/blogs-news' && <DetailPage currentPath={currentPage} onNavigate={handleNavigate} />}
+      {currentPage.startsWith('/resources/blogs-news/') && <BlogArticle slug={currentPage.split('/').pop() || ''} onNavigate={handleNavigate} />}
+      {isDynamicRoute && currentPage !== '/resources/blogs-news' && !currentPage.startsWith('/resources/blogs-news/') && <DetailPage currentPath={currentPage} onNavigate={handleNavigate} />}
       {currentPage === '404' && <NotFound onNavigate={handleNavigate} />}
     </>
   )
