@@ -48,6 +48,10 @@
 }
 
 @layer utilities {
+  .numeric-figures {
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
   .marquee {
     display: flex;
     gap: 3rem;
